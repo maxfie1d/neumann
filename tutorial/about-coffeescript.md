@@ -7,7 +7,8 @@
 CoffeeScriptではクラスの定義なんかも簡単に書けます．というかJavaScriptが難しすぎる．
 AtomもCoffeeScriptで開発されていて，AtomのパッケージもCoffeeScriptで作ります．
 
-ちなみにCoffeeScriptに似たようなものでマイクロソフトのTypeScriptがあります．TypeScriptも最終的にはJavaScriptに変換されますが，主な機能として型付けができます．
+ちなみにCoffeeScriptに似たようなものでマイクロソフトのTypeScriptがあります．
+TypeScriptも最終的にはJavaScriptに変換されますが，主な機能として型付けができます．
 
 
 # CoffeeScriptでHello World
@@ -53,4 +54,4 @@ Hello. I'm Naoto.
 ```
 
 # [余談]JavaScriptについて
-最近のJavaScriptの勢いは凄いです．いつのまにかJavaScriptでなんでもできちゃう時代になりました(Node.jsとか)．Web周りの技術の変化はとてつもないです．jQueryすらもう古いです．そのうちHTML+CSS+JavaScriptが全ての飲み込んでしまったりして...
+最近のJavaScriptの勢いは凄いです．いつのまにかJavaScriptでなんでもできちゃう時代になりました(Node.jsとか)．Web周りの技術の変化はとてつもないです．jQueryすらもう古いです．そのうちHTML+CSS+JavaScriptが全てを飲み込んでしまったりして...
