@@ -1,6 +1,6 @@
-# neumann packag
+# neumann package
 
-gitの履歴からバグの発見を支援するツールです。
+gitの履歴からバグの発見を支援するツール(になる予定)です。
 
 # 開発ルール
 
@@ -8,13 +8,13 @@ gitの履歴からバグの発見を支援するツールです。
 議事録はディレクトリdoc/meeting_minute内に保存してください。Markdown形式で保存していただけるとありがたいです。
 
 ## 情報共有
-このプラグインに関する情報交換やバグの報告はは全てissueで行ってください。
+このプラグインに関する情報交換やバグの報告は全てissueで行ってください。
 
 ## Pull Request
 コードを他人にレビューして欲しい時はPull Requestを作成してください。
 
 ## ブランチ戦略
-作業に応じたブランチでcommitしてください。ブランチ戦略は[Driessen](http://nvie.com/posts/a-successful-git-branching-model/)の方法で行おうと思います。
+作業に応じたブランチでcommitしてください。ブランチ戦略は[Driessen](http://nvie.com/posts/a-successful-git-branching-model/)(英語注意．日本語訳は[ここ](http://keijinsonyaban.blogspot.jp/2010/10/successful-git-branching-model.html))の方法で行おうと思います。
 
 ざっくりと説明すると、
 <dl>
@@ -26,7 +26,7 @@ gitの履歴からバグの発見を支援するツールです。
 	<dd>重大なバグの修正。修正したあとはmasterとhotfixesにmergeしてください。</dd>
 	<dt>develop</dt>
 	<dd>開発用。機能が実装できて動作が確認できればreleaseにmergeしてください。</dd>
-	<dt>feaatureブランチ*</dt>
+	<dt>feaature</dt>
 	<dd>特定の機能開発をするごとに新たに作成するブランチです。機能の開発が終了したらdevelopに**rebase**(≠merge)してください。</dd>
 
 
@@ -40,5 +40,5 @@ gitの履歴からバグの発見を支援するツールです。
 	<dd>git push</dd>
 	<dt>ブランチの切り替え</dt>
 	<dd>git checkout (ブランチ名)</dd>
-
-
+	<dt>コミッター・タイムスタンプ表示</dt>
+	<dd>git blame (ファイル名)</dd>
