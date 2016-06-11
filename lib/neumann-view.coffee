@@ -12,8 +12,23 @@ class NeumannView
     @element.appendChild(message)
 
   setText: (text) ->
-    displayText = "Project Dir: #{text}"
-    @element.children[0].textContent=displayText;
+    #改行で分割
+    array = text.split('\n')
+    #空行を削除
+    array.pop()
+
+    list= document.createElement('ul')
+    for item in array
+      listItem = document.createElement('li')
+      listItem.textContent=item
+      list.appendChild(listItem)
+
+    #elementの中身を空に
+    while @element.hasChildNodes()
+      @element.removeChild(@element.lastChild)
+
+    #elementにlistを追加
+    @element.appendChild(list)
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->
