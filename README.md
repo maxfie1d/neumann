@@ -21,11 +21,24 @@ gitの履歴からバグの発見を支援するツールです。
 	<dt>master</dt>
 	<dd>安定版のリリース</dd>
 	<dt>release</dt>
-	<dd>最新版のリリース。特定のバージョンを安定版にするときはmasterにマージしてください。</dd>
+	<dd>最新版のリリース。特定のバージョンを安定版にするときはmasterにmergeしてください。</dd>
 	<dt>hotfixes</dt>
-	<dd>重大なバグの修正。修正したあとはmasterとhotfixesにマージしてください。</dd>
+	<dd>重大なバグの修正。修正したあとはmasterとhotfixesにmergeしてください。</dd>
 	<dt>develop</dt>
-	<dd>開発用。機能が実装できて動作が確認できればreleaseにマージしてください。</dd>
+	<dd>開発用。機能が実装できて動作が確認できればreleaseにmergeしてください。</dd>
 	<dt>feaatureブランチ*</dt>
-	<dd>特定の機能開発をするごとに新たに作成するブランチです。機能の開発が終了したらdevelopにrebaseしてください。</dd>
+	<dd>特定の機能開発をするごとに新たに作成するブランチです。機能の開発が終了したらdevelopに**rebase**(≠merge)してください。</dd>
+
+
+## gitの基本的な使い方
+<dl>
+	<dt>編集したファイルを追加</dt>
+	<dd>git add (ファイル名)</dd>
+	<dt>コミット</dt>
+	<dd>git commit -m "(コミットメセージ)"</dd>
+	<dt>プッシュ</dt>
+	<dd>git push</dd>
+	<dt>ブランチの切り替え</dt>
+	<dd>git checkout (ブランチ名)</dd>
+
 
