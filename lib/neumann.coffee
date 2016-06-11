@@ -7,7 +7,7 @@ module.exports = Neumann =
   neumannView: null
   modalPanel: null
   subscriptions: null
-  cmd: 'git log --oneline'
+  cmd: 'git blame '
 
   activate: (state) ->
     @neumannView = new NeumannView(state.neumannViewState)
@@ -32,7 +32,9 @@ module.exports = Neumann =
     if @modalPanel.isVisible()
       @modalPanel.hide()
     else
-      exec @cmd, (err, stdout, stderr) =>
+      fullPath = atom.workspace.getActiveTextEditor().getPath()
+      [projectPath, relativePath] = atom.project.relativizePath(fullPath)
+      exec @cmd + relativePath, (err, stdout, stderr) =>
         if !err
           console.log(stdout)
           @neumannView.setText(stdout)
