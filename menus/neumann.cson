@@ -13,8 +13,8 @@
       'label': 'neumann'
       'submenu': [
         {
-          'label': 'Toggle'
-          'command': 'neumann:toggle'
+          'label': 'git blame'
+          'command': 'neumann:git-blame'
         }
       ]
     ]

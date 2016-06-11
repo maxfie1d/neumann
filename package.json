@@ -5,7 +5,9 @@
   "description": "A short description of your package",
   "keywords": [],
   "activationCommands": {
-    "atom-workspace": "neumann:toggle"
+    "atom-workspace": [
+      "neumann:git-blame"
+    ]
   },
   "repository": "https://github.com/MaxfieldWalker/neumann",
   "license": "MIT",

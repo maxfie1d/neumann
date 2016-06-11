@@ -17,7 +17,8 @@ module.exports = Neumann =
     @subscriptions = new CompositeDisposable
 
     # Register command that toggles this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'neumann:toggle': => @toggle()
+
+    @subscriptions.add atom.commands.add 'atom-workspace', 'neumann:git-blame': => @gitBlameToggle()
 
   deactivate: ->
     @modalPanel.destroy()
@@ -27,9 +28,7 @@ module.exports = Neumann =
   serialize: ->
     neumannViewState: @neumannView.serialize()
 
-  toggle: ->
-    console.log 'Neumann was toggled!'
-
+  gitBlameToggle: ->
     if @modalPanel.isVisible()
       @modalPanel.hide()
     else
