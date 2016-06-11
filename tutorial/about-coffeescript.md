@@ -5,8 +5,9 @@
 なぜCoffeeScriptというものが存在するかというと，生のJavaScriptはなかなかの曲者(くせもの)で，クラスや継承とかいった話が異様に難しいのです．
 
 CoffeeScriptではクラスの定義なんかも簡単に書けます．というかJavaScriptが難しすぎる．
+AtomもCoffeeScriptで開発されていて，AtomのパッケージもCoffeeScriptで作ります．
 
-CoffeeScriptに似たようなものでマイクロソフトのTypeScriptがあります．TypeScriptも最終的にはJavaScriptに変換されますが，主な機能として型付けができます．
+ちなみにCoffeeScriptに似たようなものでマイクロソフトのTypeScriptがあります．TypeScriptも最終的にはJavaScriptに変換されますが，主な機能として型付けができます．
 
 
 # CoffeeScriptでHello World
