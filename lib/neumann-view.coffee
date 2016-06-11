@@ -11,6 +11,10 @@ class NeumannView
     message.classList.add('message')
     @element.appendChild(message)
 
+  setText: (text) ->
+    displayText = "Project Dir: #{text}"
+    @element.children[0].textContent=displayText;
+
   # Returns an object that can be retrieved when package is activated
   serialize: ->
 

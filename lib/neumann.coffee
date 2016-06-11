@@ -1,3 +1,5 @@
+exec = require('child_process').exec
+
 NeumannView = require './neumann-view'
 {CompositeDisposable} = require 'atom'
 
@@ -5,6 +7,7 @@ module.exports = Neumann =
   neumannView: null
   modalPanel: null
   subscriptions: null
+  cmd: 'git log --oneline'
 
   activate: (state) ->
     @neumannView = new NeumannView(state.neumannViewState)
@@ -30,4 +33,10 @@ module.exports = Neumann =
     if @modalPanel.isVisible()
       @modalPanel.hide()
     else
-      @modalPanel.show()
+      exec @cmd, (err, stdout, stderr) =>
+        if !err
+          console.log(stdout)
+          @neumannView.setText(stdout)
+          @modalPanel.show()
+        else
+          console.log(stderr)
