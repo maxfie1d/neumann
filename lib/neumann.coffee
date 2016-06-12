@@ -32,7 +32,10 @@ module.exports = Neumann =
     if @modalPanel.isVisible()
       @modalPanel.hide()
     else
-      fullPath = atom.workspace.getActiveTextEditor().getPath()
+      fullPath = atom.workspace.getActiveTextEditor()?.getPath()
+      if not fullPath
+        return
+      
       [projectPath, relativePath] = atom.project.relativizePath(fullPath)
       exec @cmd + relativePath, (err, stdout, stderr) =>
         if !err
