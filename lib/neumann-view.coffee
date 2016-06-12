@@ -3,7 +3,7 @@ class NeumannView
   constructor: (serializedState) ->
     # Create root element
     @element = document.createElement('div')
-    @element.classList.add('neumann')
+    @element.classList.add('git-blame-container')
 
     # Create message element
     message = document.createElement('div')
@@ -12,7 +12,6 @@ class NeumannView
     @element.appendChild(message)
 
   setText: (text) ->
-
     #改行で分割
     array = text.split('\n')
     #空行を削除
