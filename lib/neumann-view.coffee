@@ -12,6 +12,7 @@ class NeumannView
     @element.appendChild(message)
 
   setText: (text) ->
+
     #改行で分割
     array = text.split('\n')
     #空行を削除
@@ -20,7 +21,15 @@ class NeumannView
     list= document.createElement('ul')
     for item in array
       listItem = document.createElement('li')
-      listItem.textContent=item
+      collection = item.match(/(.*)([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} [+-][0-9]{4})(.*)/)
+      listItem.appendChild(document.createTextNode(collection[1]))
+
+      timestamp = document.createElement('b')
+      timestamp.textContent = collection[2]
+      listItem.appendChild(timestamp)
+
+      listItem.appendChild(document.createTextNode(collection[3]))
+
       list.appendChild(listItem)
 
     #elementの中身を空に
