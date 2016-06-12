@@ -35,9 +35,9 @@ module.exports = Neumann =
       fullPath = atom.workspace.getActiveTextEditor()?.getPath()
       if not fullPath
         return
-      
+
       [projectPath, relativePath] = atom.project.relativizePath(fullPath)
-      exec @cmd + relativePath, (err, stdout, stderr) =>
+      exec @cmd + relativePath, cwd: projectPath, (err, stdout, stderr) =>
         if !err
           console.log(stdout)
           @neumannView.setText(stdout)
