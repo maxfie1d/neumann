@@ -37,7 +37,7 @@ module.exports = Neumann =
         return
 
       [projectPath, relativePath] = atom.project.relativizePath(fullPath)
-      exec @cmd + relativePath, cwd: projectPath, (err, stdout, stderr) =>
+      exec @cmd + relativePath, (err, stdout, stderr) =>
         if !err
           console.log(stdout)
           @neumannView.setText(stdout)
