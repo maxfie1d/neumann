@@ -13,45 +13,49 @@ TypeScriptも最終的にはJavaScriptに変換されますが，主な機能と
 
 # CoffeeScriptでHello World
 1. helloworld.coffeeに以下のソースコードを書きます．
-```coffeescript
-console.log("Hello, World!")
-```
+
+    ```coffeescript
+    console.log("Hello, World!")
+    ```
 
 1. ターミナルでコマンドを打って実行します．「coffee」コマンドはnpmからインストールします．npmについては各自で調べてください(´；ω；｀)
-```
-$ coffee helloworld.coffee
-```
+
+    ```
+    $ coffee helloworld.coffee
+    ```
 
 1. "Hello, World!"と表示されれば成功です．
-```
-$ coffee helloworld.coffee
-Hello, World!
-```
+
+    ```
+    $ coffee helloworld.coffee
+    Hello, World!
+    ```
 
 # もうちょっとCoffeeScript
 さっきのHello Worldの例は実はJavaScriptと全く同じなので，クラスの定義を含めたCoffeeScriptらしいことをやってみましょう．
 
 1. person.coffeeに以下のソースコードを書きます.
 
-```coffeescript
-class Person
-    constructor: (name, age) ->
+    ```coffeescript
+    class Person
+      constructor: (name, age) ->
         @name = name
         @age = age
 
-    greet: () ->
+      greet: () ->
         console.log("Hello. I'm #{@name}.")
 
-naoto = new Person("Naoto", 20)
+    naoto = new Person("Naoto", 20)
 
-naoto.greet()
-```
+    naoto.greet()
+    ```
 
 1. 実行します．以下のように表示されれば成功です．
-```
-$ coffee person.coffee
-Hello. I'm Naoto.
-```
+
+    ```
+    $ coffee person.coffee
+    Hello. I'm Naoto.
+    ```
 
 # [余談]JavaScriptについて
 最近のJavaScriptの勢いは凄いです．いつのまにかJavaScriptでなんでもできちゃう時代になりました(Node.jsとか)．Web周りの技術の変化はとてつもないです．jQueryすらもう古いです．そのうちHTML+CSS+JavaScriptが全てを飲み込んでしまったりして...
