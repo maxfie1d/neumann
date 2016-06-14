@@ -20,7 +20,7 @@ module.exports = Neumann =
     # Register command that toggles this view
 
     @subscriptions.add atom.commands.add 'atom-workspace', 'neumann:git-blame': => @gitBlameToggle()
-    @subscriptions.add atom.commands.add 'atom-workspace', 'neumann:promise-git-blame': ->PromiseGitBlame(['--version'])
+    @subscriptions.add atom.commands.add 'atom-workspace', 'neumann:promise-git-blame': ->PromiseGitBlame()
 
   deactivate: ->
     @modalPanel.destroy()
