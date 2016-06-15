@@ -15,6 +15,10 @@
         {
           'label': 'git blame'
           'command': 'neumann:git-blame'
+        },
+        {
+          'label': 'git blame (Promise version)'
+          'command': 'neumann:promise-git-blame'
         }
       ]
     ]
