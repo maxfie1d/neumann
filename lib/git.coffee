@@ -13,7 +13,7 @@ getRepositoryForActiveFile = ->
   new Promise (resolve, reject) ->
     project = atom.project
     activeFilePath = atom.workspace.getActiveTextEditor()?.getPath()
-    # Atomで開いているディレクトリのうち，現在開いているファイルを含むものを抽出する
+    # Atomで開いているディレクトリのうち，現在開いているファイルを含むものを選ぶ
     directory = project.getDirectories().filter((d) -> d.contains(activeFilePath))[0]
     if directory?
       project.repositoryForDirectory(directory)
@@ -46,6 +46,8 @@ module.exports = git =
   blame: ->
     getRepository()
     .then (repo) ->
+      # GitRepository.relativize()を使うとrealpathが返されるようなので
+      # Direcotry.relativize()を使っています
       workingDir = new Directory(repo.getWorkingDirectory())
       file = workingDir.relativize(atom.workspace.getActiveTextEditor()?.getPath())
       git.execute(['blame', file], cwd: repo.getWorkingDirectory())
