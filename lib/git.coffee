@@ -56,5 +56,3 @@ module.exports = git =
       workingDir = new Directory(repo.getWorkingDirectory())
       file = workingDir.relativize(atom.workspace.getActiveTextEditor()?.getPath())
       git.execute(['blame', file], cwd: repo.getWorkingDirectory())
-      .then (output) ->
-        console.log output
