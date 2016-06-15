@@ -19,7 +19,10 @@ getRepositoryForActiveFile = ->
     if directory?
       project.repositoryForDirectory(directory)
       .then (repository) ->
-        resolve(repository)
+        unless repository is null
+          resolve(repository)
+        else
+          reject('Not a git repository.')
       .catch (e) ->
         reject(e)
     else
