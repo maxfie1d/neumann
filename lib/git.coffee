@@ -43,6 +43,7 @@ module.exports = git =
             if code is 0
               resolve output
             else
+              atom.notifications.addError(output)
               reject output
       catch
         atom.notifications.addError('git is not available, or not on the PATH')
