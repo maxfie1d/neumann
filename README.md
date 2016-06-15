@@ -13,6 +13,9 @@ gitの履歴からバグの発見を支援するツール(になる予定)です
 ## Pull Request
 コードを他人にレビューして欲しい時はPull Requestを作成してください。
 
+## 文字コード
+文字コードは**UTF-8**で統一してください。
+
 ## ブランチ戦略
 作業に応じたブランチでcommitしてください。ブランチ戦略は[Driessen](http://nvie.com/posts/a-successful-git-branching-model/)(英語注意．日本語訳は[ここ](http://keijinsonyaban.blogspot.jp/2010/10/successful-git-branching-model.html))の方法で行おうと思います。
 
