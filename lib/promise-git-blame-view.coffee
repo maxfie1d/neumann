@@ -2,11 +2,10 @@ module.exports =
   class PromiseGitBlameView
     _panel = null
 
-    constructor: (@output, visible=false) ->
-      if _panel?
+    constructor: (@output) ->
+      if _panel?.isVisible()
         _panel.hide()
         _panel.destroy()
-        _panel = null
         return
 
       @element = document.createElement('div')
