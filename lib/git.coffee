@@ -7,6 +7,7 @@ getRepository = ->
     .then (repository) ->
       resolve(repository)
     .catch (e) ->
+      atom.notifications.addError(e)
       reject(e)
 
 getRepositoryForActiveFile = ->
@@ -41,6 +42,7 @@ module.exports = git =
             else
               reject output
       catch
+        atom.notifications.addError('git is not available, or not on the PATH')
         reject 'Could not find git'
 
   blame: ->
