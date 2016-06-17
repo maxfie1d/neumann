@@ -45,3 +45,10 @@ gitの履歴からバグの発見を支援するツール(になる予定)です
 	<dd>git checkout (ブランチ名)</dd>
 	<dt>コミッター・タイムスタンプ表示</dt>
 	<dd>git blame (ファイル名)</dd>
+
+## Collaborators
+いきなりpushは怖いという人はここに自己紹介でも書いて練習しましょう！
+
+<dl>
+	<dt>[MaxfieldWalker](https://github.com/MaxfieldWalker)
+	<dd>Web周りの技術にも興味あります．CoffeeScriptは初心者です．好きなコーヒーはアイスコーヒーです．よろしくお願いします．
