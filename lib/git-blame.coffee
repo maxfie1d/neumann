@@ -1,9 +1,9 @@
 git = require './git'
-PromiseGitBlameView = require './promise-git-blame-view'
+GitBlameView = require './git-blame-view'
 
 module.exports = ->
   git.blame()
   .then (output) ->
-    new PromiseGitBlameView(output)
+    new GitBlameView(output)
   .catch (e) ->
     console.log e

@@ -6,8 +6,7 @@
   "keywords": [],
   "activationCommands": {
     "atom-workspace": [
-      "neumann:git-blame",
-      "neumann:promise-git-blame"
+      "neumann:git-blame"
     ]
   },
   "repository": "https://github.com/MaxfieldWalker/neumann",

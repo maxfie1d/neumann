@@ -1,5 +1,5 @@
 module.exports =
-  class PromiseGitBlameView
+  class GitBlameView
     _panel = null
 
     constructor: (@output) ->

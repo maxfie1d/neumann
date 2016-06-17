@@ -9,4 +9,3 @@
 # https://atom.io/docs/latest/behind-atom-keymaps-in-depth
 'atom-workspace':
   'ctrl-g ctrl-b': 'neumann:git-blame'
-  'ctrl-p ctrl-b': 'neumann:promise-git-blame'
