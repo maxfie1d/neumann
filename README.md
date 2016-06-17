@@ -1,4 +1,7 @@
 # neumann package
+[![apm](https://img.shields.io/apm/v/neumann.svg)](https://atom.io/packages/neumann)
+[![apm](https://img.shields.io/apm/dm/neumann.svg)](https://atom.io/packages/neumann)
+[![apm](https://img.shields.io/apm/l/neumann.svg)](https://atom.io/packages/neumann)
 
 gitの履歴からバグの発見を支援するツール(になる予定)です。
 
