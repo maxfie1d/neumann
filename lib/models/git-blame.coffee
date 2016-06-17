@@ -1,5 +1,5 @@
-git = require './git'
-GitBlameView = require './git-blame-view'
+git = require '../git'
+GitBlameView = require '../views/git-blame-view'
 
 module.exports = ->
   git.blame()

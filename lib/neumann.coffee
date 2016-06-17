@@ -1,5 +1,5 @@
 {CompositeDisposable} = require 'atom'
-GitBlame = require './git-blame'
+GitBlame = require './models/git-blame'
 
 module.exports = Neumann =
   subscriptions: null
