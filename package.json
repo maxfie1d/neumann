@@ -6,7 +6,8 @@
   "keywords": [],
   "activationCommands": {
     "atom-workspace": [
-      "neumann:git-blame"
+      "neumann:git-blame",
+      "neumann:change-line-background"
     ]
   },
   "repository": "https://github.com/MaxfieldWalker/neumann",

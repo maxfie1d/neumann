@@ -1,5 +1,6 @@
 {CompositeDisposable} = require 'atom'
 GitBlame = require './models/git-blame'
+ChangeLineBackground = require './models/change-line-background'
 
 module.exports = Neumann =
   # ここにパッケージの設定を書く
@@ -17,6 +18,7 @@ module.exports = Neumann =
 
     # Register command that toggles this view
     @subscriptions.add atom.commands.add 'atom-workspace', 'neumann:git-blame': -> GitBlame()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'neumann:change-line-background': -> ChangeLineBackground()
 
   deactivate: ->
     @subscriptions.dispose()
