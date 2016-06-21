@@ -55,5 +55,5 @@ module.exports = git =
       # GitRepository.relativize()を使うとrealpathが返されるようなので
       # Direcotry.relativize()を使っています
       workingDir = new Directory(repo.getWorkingDirectory())
-      file = workingDir.relativize(atom.workspace.getActiveTextEditor()?.getPath()).replace(/\\/, '/')
+      file = workingDir.relativize(atom.workspace.getActiveTextEditor()?.getPath()).replace(/\\/g, '/')
       git.execute(['blame', file], cwd: repo.getWorkingDirectory())
