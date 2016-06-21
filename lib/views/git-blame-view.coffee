@@ -2,7 +2,7 @@ module.exports =
   class GitBlameView
     _panel = null
 
-    constructor: (@output) ->
+    constructor: (codeLines) ->
       if _panel?.isVisible()
         _panel.hide()
         _panel.destroy()
@@ -11,20 +11,19 @@ module.exports =
       @element = document.createElement('div')
       @element.classList.add('git-blame-container')
 
-      array = @output.split('\n')[...-1]
-
       list = document.createElement('ul')
-      for item in array
+      for codeLine in codeLines
         listItem = document.createElement('li')
-        collection = item.match(/(.*)([0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} [+-][0-9]{4})(.*)/)
 
-        listItem.appendChild(document.createTextNode(collection[1]))
+        listItem.appendChild(document.createTextNode(codeLine.commitId))
+        listItem.appendChild(document.createTextNode(codeLine.author))
 
         timestamp = document.createElement('b')
-        timestamp.textContent = collection[2]
+        timestamp.textContent = codeLine.timestamp
         listItem.appendChild(timestamp)
 
-        listItem.appendChild(document.createTextNode(collection[3]))
+        listItem.appendChild(document.createTextNode(codeLine.line))
+        listItem.appendChild(document.createTextNode(codeLine.code))
 
         list.appendChild(listItem)
 
