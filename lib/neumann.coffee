@@ -2,6 +2,13 @@
 GitBlame = require './models/git-blame'
 
 module.exports = Neumann =
+  # ここにパッケージの設定を書く
+  config:
+    gitPath:
+      type: 'string'
+      default: 'git'
+      description: 'git path'
+
   subscriptions: null
 
   activate: (state) ->

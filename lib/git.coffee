@@ -34,7 +34,7 @@ module.exports = git =
       output = ''
       try
         new BufferedProcess
-          command: 'git'
+          command: atom.config.get('neumann.gitPath') ? 'git'
           args: args
           options: options
           stdout: (data) -> output += data.toString()
