@@ -1,6 +1,6 @@
 {CompositeDisposable} = require 'atom'
 GitBlame = require './models/git-blame'
-SuspeciousLinesView = require './views/suspecious-lines-view'
+SuspiciousLinesView = require './views/suspicious-lines-view'
 
 module.exports = Neumann =
   # ここにパッケージの設定を書く
@@ -19,9 +19,9 @@ module.exports = Neumann =
     # Register command that toggles this view
     @subscriptions.add atom.commands.add 'atom-workspace', 'neumann:git-blame': -> GitBlame()
 
-    # 各TextEditorに対してSuspeciousLineViewを作る
+    # 各TextEditorに対してSuspiciousLineViewを作る
     atom.workspace.observeTextEditors (editor) ->
-      new SuspeciousLinesView(editor)
+      new SuspiciousLinesView(editor)
 
   deactivate: ->
     @subscriptions.dispose()

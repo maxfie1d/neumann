@@ -1,7 +1,7 @@
 {CompositeDisposable} = require 'atom'
 
 module.exports =
-  class SuspeciousLinesView
+  class SuspiciousLinesView
     constructor: (@editor) ->
       @subscriptions = new CompositeDisposable
       # コマンドを登録
