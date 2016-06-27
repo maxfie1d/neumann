@@ -1,5 +1,8 @@
 {CompositeDisposable} = require 'atom'
 RandomNumberGenerator = require '../models/random-number-generator'
+git = require '../git'
+CodeLine = require '../models/code-line'
+RandomAlgorithm = require '../algorithm/random-algorithm'
 
 module.exports =
   class SuspiciousLinesView
@@ -12,14 +15,34 @@ module.exports =
     change: =>
       @handler = @editor.onDidStopChanging(@destroyDecoration)
 
-      lineCount = @editor.getLineCount()
-      for i in [0 .. lineCount-1]
-        position = [i, 0]
+      git.blame()
+      .then (output) =>
+        @createView(output)
+      .catch (e) ->
+        console.log e
+
+
+    createView: (output) ->
+      array = output.split('\n')[...-1]
+      codeLines = []
+      for item in array
+        codeLine = new CodeLine(item)
+        codeLines.push(codeLine)
+
+      # アルゴリズムにコードを渡して疑わしさを評価してもらう
+      codeLines = RandomAlgorithm.evaluate(codeLines)
+
+      # 正規化のために疑わしさの最大値を求める
+      maxSuspicious =  Math.max.apply(null, (x.suspicious for x in codeLines))
+
+      for codeLine in codeLines
+        position = [codeLine.line - 1, 0]
         marker = @editor.markBufferPosition(position)
-        number = RandomNumberGenerator.generate()
+        # 1から10の10段階に正規化？
+        number = Math.round(1.0 * codeLine.suspicious / maxSuspicious * 9) + 1
         decoration = @editor.decorateMarker(marker, {type: 'line-number', class: "suspicious-line-number-#{number}"})
         @decorations.push decoration
-        
+
     destroyDecoration: =>
       # デコレーションを削除
       decoration.getMarker().destroy() for decoration in @decorations
