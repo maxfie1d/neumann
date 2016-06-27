@@ -13,5 +13,8 @@ module.exports =
 
       @raw  = line
 
+      # 疑わしさの度合い
+      @suspicious = 0
+
     toString: =>
       @raw
