@@ -9,9 +9,9 @@ module.exports =
       @decorations = []
       @subscriptions = new CompositeDisposable
       # コマンドを登録
-      @subscriptions.add atom.commands.add atom.views.getView(@editor), 'neumann:change-line-background': => @change()
+      @subscriptions.add atom.commands.add atom.views.getView(@editor), 'neumann:suspicious-lines': => @invoke()
 
-    change: =>
+    invoke: =>
       # 前のデコレーションとハンドラーを削除
       @destroy()
 
