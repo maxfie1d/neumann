@@ -44,6 +44,8 @@ module.exports =
         number = Math.round(1.0 * codeLine.suspicious / maxSuspicious * 9) + 1
         decoration = @editor.decorateMarker(marker, {type: 'line-number', class: "suspicious-line-number-#{number}"})
         @decorations.push decoration
+        decoration = @editor.decorateMarker(marker, {type: 'line', class: "suspicious-line-#{number}"})
+        @decorations.push decoration
 
     destroy: =>
       # デコレーションを削除
