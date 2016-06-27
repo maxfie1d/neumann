@@ -1,6 +1,8 @@
 {CompositeDisposable} = require 'atom'
 git = require '../git'
 SuspiciousLinesView = require '../views/suspicious-lines-view'
+CodeLine = require '../models/code-line'
+RandomAlgorithm = require '../algorithm/random-algorithm'
 
 module.exports =
   class SuspiciousLinesModel
@@ -15,6 +17,16 @@ module.exports =
     invoke: =>
       git.blame()
       .then (output) =>
-        @view.create(output)
+        array = output.split('\n')[...-1]
+        codeLines = []
+        for item in array
+          codeLine = new CodeLine(item)
+          codeLines.push(codeLine)
+
+        # アルゴリズムにコードを渡して疑わしさを評価してもらう
+        codeLines = RandomAlgorithm.evaluate(codeLines)
+
+        # Viewにコードを渡す
+        @view.create(codeLines)
       .catch (e) ->
         console.log e

@@ -1,6 +1,3 @@
-CodeLine = require '../models/code-line'
-RandomAlgorithm = require '../algorithm/random-algorithm'
-
 module.exports =
   class SuspiciousLinesView
     constructor: (@editor) ->
@@ -14,17 +11,7 @@ module.exports =
 
       @createView(output)
 
-
-    createView: (output) ->
-      array = output.split('\n')[...-1]
-      codeLines = []
-      for item in array
-        codeLine = new CodeLine(item)
-        codeLines.push(codeLine)
-
-      # アルゴリズムにコードを渡して疑わしさを評価してもらう
-      codeLines = RandomAlgorithm.evaluate(codeLines)
-
+    createView: (codeLines) ->
       # 正規化のために疑わしさの最大値を求める
       maxSuspicious =  Math.max.apply(null, (x.suspicious for x in codeLines))
 
