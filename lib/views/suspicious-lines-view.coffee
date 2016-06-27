@@ -1,5 +1,4 @@
 {CompositeDisposable} = require 'atom'
-RandomNumberGenerator = require '../models/random-number-generator'
 git = require '../git'
 CodeLine = require '../models/code-line'
 RandomAlgorithm = require '../algorithm/random-algorithm'
