@@ -12,7 +12,10 @@ module.exports =
       @subscriptions.add atom.commands.add atom.views.getView(@editor), 'neumann:change-line-background': => @change()
 
     change: =>
-      @handler = @editor.onDidStopChanging(@destroyDecoration)
+      # 前のデコレーションとハンドラーを削除
+      @destroy()
+
+      @handler = @editor.onDidStopChanging(@destroy)
 
       git.blame()
       .then (output) =>
@@ -42,10 +45,10 @@ module.exports =
         decoration = @editor.decorateMarker(marker, {type: 'line-number', class: "suspicious-line-number-#{number}"})
         @decorations.push decoration
 
-    destroyDecoration: =>
+    destroy: =>
       # デコレーションを削除
       decoration.getMarker().destroy() for decoration in @decorations
       # キャッシュを空に
       @decorations = []
       # ハンドラーを削除
-      @handler.dispose()
+      @handler?.dispose()
