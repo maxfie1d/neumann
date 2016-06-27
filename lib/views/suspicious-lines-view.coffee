@@ -1,5 +1,3 @@
-{CompositeDisposable} = require 'atom'
-git = require '../git'
 CodeLine = require '../models/code-line'
 RandomAlgorithm = require '../algorithm/random-algorithm'
 
@@ -7,21 +5,14 @@ module.exports =
   class SuspiciousLinesView
     constructor: (@editor) ->
       @decorations = []
-      @subscriptions = new CompositeDisposable
-      # コマンドを登録
-      @subscriptions.add atom.commands.add atom.views.getView(@editor), 'neumann:suspicious-lines': => @invoke()
 
-    invoke: =>
+    create: (output)=>
       # 前のデコレーションとハンドラーを削除
       @destroy()
 
       @handler = @editor.onDidStopChanging(@destroy)
 
-      git.blame()
-      .then (output) =>
-        @createView(output)
-      .catch (e) ->
-        console.log e
+      @createView(output)
 
 
     createView: (output) ->

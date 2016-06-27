@@ -1,6 +1,6 @@
 {CompositeDisposable} = require 'atom'
 GitBlame = require './models/git-blame'
-SuspiciousLinesView = require './views/suspicious-lines-view'
+SuspiciousLinesModel = require './models/suspicios-lines-model'
 
 module.exports = Neumann =
   # ここにパッケージの設定を書く
@@ -21,7 +21,7 @@ module.exports = Neumann =
 
     # 各TextEditorに対してSuspiciousLineViewを作る
     atom.workspace.observeTextEditors (editor) ->
-      new SuspiciousLinesView(editor)
+      new SuspiciousLinesModel(editor)
 
   deactivate: ->
     @subscriptions.dispose()
