@@ -2,6 +2,7 @@
 GitBlame = require './models/git-blame'
 SuspiciousLinesModel = require './models/suspicios-lines-model'
 SuspiciousGraphModel = require './models/suspicious-graph-model'
+SuspiciousGraphView = require './views/suspicious-graph-view'
 
 module.exports = Neumann =
 	# ここにパッケージの設定を書く
@@ -43,6 +44,24 @@ module.exports = Neumann =
 		# 各TextEditorに対してSuspiciousLineViewを作る
 		atom.workspace.observeTextEditors (editor) ->
 			new SuspiciousLinesModel(editor)
+
+		# グラフのカスタムオープナーを定義
+		atom.workspace.addOpener (uri) ->
+			try
+				url = require 'url'
+				{protocol, host, path} = url.parse(uri)
+			catch error
+				return
+
+			return unless protocol is 'neumann:'
+
+			try
+				path = decodeURI(path)
+			catch error
+				return
+
+			return new SuspiciousGraphView()
+
 
 	deactivate: ->
 		@subscriptions.dispose()
