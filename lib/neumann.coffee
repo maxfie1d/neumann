@@ -1,6 +1,7 @@
 {CompositeDisposable} = require 'atom'
 GitBlame = require './models/git-blame'
 SuspiciousLinesModel = require './models/suspicios-lines-model'
+SuspiciousGraphModel = require './models/suspicious-graph-model'
 
 module.exports = Neumann =
 	# ここにパッケージの設定を書く
@@ -35,6 +36,9 @@ module.exports = Neumann =
 
 		# Register command that toggles this view
 		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:git-blame': -> GitBlame()
+
+		suspiciousGraphModel = new SuspiciousGraphModel()
+		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:suspicious-graph': -> suspiciousGraphModel.invoke()
 
 		# 各TextEditorに対してSuspiciousLineViewを作る
 		atom.workspace.observeTextEditors (editor) ->
