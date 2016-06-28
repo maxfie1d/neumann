@@ -3,6 +3,7 @@ git = require '../git'
 SuspiciousLinesView = require '../views/suspicious-lines-view'
 CodeLine = require '../models/code-line'
 RandomAlgorithm = require '../algorithm/random-algorithm'
+NeumannAlgorithm = require '../algorithm/neumann-algorithm'
 
 module.exports =
   class SuspiciousLinesModel
@@ -24,7 +25,12 @@ module.exports =
           codeLines.push(codeLine)
 
         # アルゴリズムにコードを渡して疑わしさを評価してもらう
-        codeLines = RandomAlgorithm.evaluate(codeLines)
+        algorithm = atom.config.get('neumann.algorithm')
+        switch algorithm
+          when "Neumann Algorithm"
+            codeLines = NeumannAlgorithm.evaluate(codeLines)
+          when "Random Algorithm"
+            codeLines = RandomAlgorithm.evaluate(codeLines)
 
         # Viewにコードを渡す
         @view.create(codeLines)
