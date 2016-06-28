@@ -5,10 +5,20 @@ SuspiciousLinesModel = require './models/suspicios-lines-model'
 module.exports = Neumann =
   # ここにパッケージの設定を書く
   config:
+    # gitのパスの設定
     gitPath:
       type: 'string'
       default: 'git'
       description: 'git path'
+    # 使用するアルゴリズムの設定
+    algorithm:
+      type: 'string'
+      default: "Neumann Algorithm"
+      description: "Select algorithm to use."
+      enum: [
+        "Neumann Algorithm",
+        "Random Algorithm"
+      ]
 
   subscriptions: null
 
