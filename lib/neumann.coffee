@@ -19,6 +19,13 @@ module.exports = Neumann =
         "Neumann Algorithm",
         "Random Algorithm"
       ]
+    # 信頼できないメンバーの設定
+    unreliableMembers:
+      type: 'array'
+      default: []
+      items:
+        type: 'string'
+      description: "Unrealible members (comma-separated string)"
 
   subscriptions: null
 
