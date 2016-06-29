@@ -4,7 +4,7 @@ module.exports =
   class suspiciousGraphModel
     constructor: ->
 
-    invoke: ->
+    toggle: ->
       # すでにグラフ画面がアクティブなら閉じる
       if atom.workspace.getActivePaneItem() instanceof SuspiciousGraphView
         atom.workspace.destroyActivePaneItem()

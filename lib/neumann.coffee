@@ -39,7 +39,7 @@ module.exports = Neumann =
 		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:git-blame': -> GitBlame()
 
 		suspiciousGraphModel = new SuspiciousGraphModel()
-		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:suspicious-graph': -> suspiciousGraphModel.invoke()
+		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:suspicious-graph': -> suspiciousGraphModel.toggle()
 
 		# 各TextEditorに対してSuspiciousLineViewを作る
 		atom.workspace.observeTextEditors (editor) ->
