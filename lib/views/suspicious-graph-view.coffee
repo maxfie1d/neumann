@@ -11,3 +11,7 @@ module.exports =
     # タブに表示されるタイトル
     getTitle: ->
       'suspicious-graph'
+
+    # [必須]atom.workspace.paneForURIメソッドを使用するため
+    getURI: ->
+      "neumann://suspicious-graph/#{@editorId}"
