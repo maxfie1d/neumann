@@ -60,7 +60,7 @@ module.exports = Neumann =
 			catch error
 				return
 
-			return new SuspiciousGraphView()
+			return new SuspiciousGraphView(editorId: path.substring(1))
 
 
 	deactivate: ->

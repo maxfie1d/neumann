@@ -5,7 +5,7 @@ module.exports =
     @content: ->
       @div class: 'suspicious-graph'
 
-    constructor: ->
+    constructor: ({@editorId})->
       super
 
     # タブに表示されるタイトル
