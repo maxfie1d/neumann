@@ -59,3 +59,7 @@ Atomの場合，「Settings」の下の方に「Tab Type」という項目があ
 <dl>
 	<dt>[MaxfieldWalker](https://github.com/MaxfieldWalker)
 	<dd>Web周りの技術にも興味あります．CoffeeScriptは初心者です．好きなコーヒーはアイスコーヒーです．よろしくお願いします．
+
+<dl>
+	<dt>[MasayoshiIwamoto](https://github.com/MasayoshiIwamoto)
+	<dd>プログラミングは好きですが、プログラミングの勉強は嫌いです.頑張らない僕を叱って下さい.好きな言葉は「マヨネーズ」です.よろしくお願いします.
