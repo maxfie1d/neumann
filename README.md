@@ -63,3 +63,7 @@ Atomの場合，「Settings」の下の方に「Tab Type」という項目があ
 <dl>
 	<dt>[MasayoshiIwamoto](https://github.com/MasayoshiIwamoto)
 	<dd>プログラミングは好きですが、プログラミングの勉強は嫌いです.頑張らない僕を叱って下さい.好きな言葉は「マヨネーズ」です.よろしくお願いします.
+
+<dl>
+	<dt>[igaigai](https://github.com/igaigai)
+	<dd>プログラミングは好きですが、勉強は嫌いです。好きな役は純チャンです。わからないことばかりですが、よろしくお願いします.
