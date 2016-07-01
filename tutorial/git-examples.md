@@ -22,8 +22,9 @@
         $ git checkout new-feature
         $ git rebase develop
 
-1. developブランチからnew-featureブランチをマージし，new-featureブランチを削除して完了
+1. developブランチからnew-featureブランチをマージし，new-featureブランチを削除．最後にpushして完了．
 
         $ git checkout develop
         $ git merge new-feature
         $ git branch -d new-feature
+        $ git push origin develop
