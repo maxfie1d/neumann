@@ -11,6 +11,28 @@ AtomもCoffeeScriptで開発されていて，AtomのパッケージもCoffeeScr
 TypeScriptも最終的にはJavaScriptに変換されますが，主な機能として型付けができます．
 
 
+# CoffeeScriptのインストール方法
+1. CoffeeScriptはnpmというJava Scriptの様々なパッケージを管理するコマンドからインストールします。なのでまずはnpmを入れる必要があります。npmのインストール方法についてはOSによって様々なので調べてみてください。
+ちなみに、HomeBrewが入っているManなら
+	```
+	$ brew install npm
+	```
+とするだけで入ります。
+
+2. npmがインストールされていることを確認するために、次のコマンドを打ってnpmのバージョンが出ることを確認してみてください。(バージョン名が前後しているのは構いません)
+
+	```
+	$ npm --version
+	3.9.5
+	```
+
+3. npmでCoffeeScriptをインストールします。
+	
+	```
+	$ npm install -g coffee-script
+	```
+
+
 # CoffeeScriptでHello World
 1. helloworld.coffeeに以下のソースコードを書きます．
 
