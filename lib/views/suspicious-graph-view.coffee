@@ -1,6 +1,7 @@
 {ScrollView} = require 'atom-space-pen-views'
 d3 = require 'd3'
 $ = require 'jQuery'
+ActiveFile = require '../models/active-file'
 
 module.exports =
   class SuspiciousGraphView extends ScrollView
@@ -24,7 +25,66 @@ module.exports =
     # DOMの表示が完了したら描画する
     attached: ->
       # @renderBarChart()
-      @renderPieChart()
+      # @renderPieChart()
+
+      # TODO: editorIdからTextEditorを取得し，CodeLineを取得するようにする
+      ActiveFile.getEvaluatedCodeLines().then (codeLines) =>
+        @renderSuspiciousGraph(codeLines)
+
+
+    renderSuspiciousGraph: (codeLines) ->
+      dataSet = codeLines
+
+      width = @width() - 20
+      height = 30 * dataSet.length
+
+      # svg要素を追加
+      svg = d3.select(@container.get(0))
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height)
+
+      scaleX = d3.scaleLinear()
+      .domain([0, d3.max(dataSet, (d) -> d.suspicious)])
+      .range([0, width])
+
+      scaleY = d3.scaleBand()
+      .domain(d3.range(dataSet.length))
+      .range([0, height])
+      .paddingInner(.3) # 棒グラフの間隔(bandに対する割合)
+
+      bars = svg.selectAll(".bar")
+      .data(dataSet)
+      .enter()
+      .append("g")
+      .attr("class", "bar")
+      .attr("transform", (d, i) -> "translate(0, #{scaleY(i)})")
+
+      # 棒を描画
+      bars
+      .append("rect")
+      .attr("x", 0)
+      .attr("width", (d) -> scaleX(d.suspicious))
+      .attr("height", scaleY.bandwidth())
+      .attr("fill", "blue")
+
+      # コードのラベルを描画
+      bars
+      .append("text")
+      .attr("class", "code")
+      .attr("y", scaleY.bandwidth() / 2)
+      .attr("fill", "white")
+      .text((d) -> d.raw)
+
+      # 疑わしさのラベルを描画
+      bars
+      .append("text")
+      .attr("class", "suspicious")
+      .attr("x", (d) -> scaleX(d.suspicious) - 3)
+      .attr("y", scaleY.bandwidth() / 2)
+      .attr("fill", "white")
+      .text((d) -> d.suspicious)
+
 
     # 棒グラフ
     renderBarChart: ->
