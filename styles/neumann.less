@@ -18,3 +18,20 @@
 		background-color: red;
 	}
 }
+
+.suspicious-graph {
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  // 棒グラフのスタイル
+  .bar{
+    // ラベルのスタイル
+    text {
+      dominant-baseline: central; // 上下の基準を中央に
+
+      &.suspicious{
+        text-anchor: end; // 右端揃え
+      }
+    }
+  }
+}
