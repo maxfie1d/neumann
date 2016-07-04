@@ -1,13 +1,13 @@
 RuleBase = require './rule-base'
 
 module.exports =
-  # 夜に書かれたコードはやばいルールです
-  class EditHistoryRule extends RuleBase
-    constructor: (@priority=1) ->
+	# 夜に書かれたコードはやばいルールです
+	class EditHistoryRule extends RuleBase
+		constructor: (@priority=1) ->
 
-    evaluate: (codeLine) ->
-      hours = codeLine.timestamp.getHours()
-      # maxtime mintime を求める      @timestamp = new Date(collection[3])
+		evaluate: (codeLine) ->
+			hours = codeLine.timestamp.getHours()
+			# maxtime mintime を求める			@timestamp = new Date(collection[3])
 			maxtime = 0	#NewestTime-X　最大
 			todaytime = new Date
 			mintime = todaytime.getTime()	#OldestTime-X 	最小
@@ -21,7 +21,7 @@ module.exports =
 
 			scale = maxtime - mintime
 
-      if hours >= @start || hours <= @end
-        return 10 * @priority
-      else
-        return 0
+			if hours >= @start || hours <= @end
+				return 10 * @priority
+			else
+				return 0

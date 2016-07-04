@@ -6,33 +6,33 @@ RandomAlgorithm = require '../algorithm/random-algorithm'
 NeumannAlgorithm = require '../algorithm/neumann-algorithm'
 
 module.exports =
-  class SuspiciousLinesModel
-    constructor: (@editor) ->
-      @subscriptions = new CompositeDisposable
+	class SuspiciousLinesModel
+		constructor: (@editor) ->
+			@subscriptions = new CompositeDisposable
 
-      # コマンドを登録
-      @subscriptions.add atom.commands.add atom.views.getView(@editor), 'neumann:suspicious-lines': => @invoke()
+			# コマンドを登録
+			@subscriptions.add atom.commands.add atom.views.getView(@editor), 'neumann:suspicious-lines': => @invoke()
 
-      @view = new SuspiciousLinesView(@editor)
+			@view = new SuspiciousLinesView(@editor)
 
-    invoke: =>
-      git.blame()
-      .then (output) =>
-        array = output.split('\n')[...-1]
-        codeLines = []
-        for item in array
-          codeLine = new CodeLine(item)
-          codeLines.push(codeLine)
+		invoke: =>
+			git.blame()
+			.then (output) =>
+				array = output.split('\n')[...-1]
+				codeLines = []
+				for item in array
+					codeLine = new CodeLine(item)
+					codeLines.push(codeLine)
 
-        # アルゴリズムにコードを渡して疑わしさを評価してもらう
-        algorithm = atom.config.get('neumann.algorithm')
-        switch algorithm
-          when "Neumann Algorithm"
-            codeLines = NeumannAlgorithm.evaluate(codeLines)
-          when "Random Algorithm"
-            codeLines = RandomAlgorithm.evaluate(codeLines)
+				# アルゴリズムにコードを渡して疑わしさを評価してもらう
+				algorithm = atom.config.get('neumann.algorithm')
+				switch algorithm
+					when "Neumann Algorithm"
+						codeLines = NeumannAlgorithm.evaluate(codeLines)
+					when "Random Algorithm"
+						codeLines = RandomAlgorithm.evaluate(codeLines)
 
-        # Viewにコードを渡す
-        @view.create(codeLines)
-      .catch (e) ->
-        console.log e
+				# Viewにコードを渡す
+				@view.create(codeLines)
+			.catch (e) ->
+				console.log e
