@@ -1,21 +1,21 @@
 {
-  "name": "neumann",
-  "main": "./lib/neumann",
-  "version": "0.0.3",
-  "description": "A short description of your package",
-  "keywords": [],
-  "activationCommands": {
-    "atom-workspace": [
-      "neumann:git-blame",
-      "neumann:suspicious-lines"
-    ]
-  },
-  "repository": "https://github.com/MaxfieldWalker/neumann",
-  "license": "MIT",
-  "engines": {
-    "atom": ">=1.0.0 <2.0.0"
-  },
-  "dependencies": {
-    "sqlite3": "*"
-  }
+	"name": "neumann",
+	"main": "./lib/neumann",
+	"version": "0.0.3",
+	"description": "A short description of your package",
+	"keywords": [],
+	"activationCommands": {
+		"atom-workspace": [
+			"neumann:git-blame",
+			"neumann:suspicious-lines"
+		]
+	},
+	"repository": "https://github.com/MaxfieldWalker/neumann",
+	"license": "MIT",
+	"engines": {
+		"atom": ">=1.0.0 <2.0.0"
+	},
+	"dependencies": {
+		"sqlite3": "*"
+	}
 }
