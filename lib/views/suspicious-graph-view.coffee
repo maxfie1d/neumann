@@ -35,6 +35,11 @@ module.exports =
 		renderSuspiciousGraph: (codeLines) ->
 			dataSet = codeLines
 
+			# アニメーションの長さ
+			duration = 1500
+			# アニメーションのディレイ
+			delay = 50
+
 			width = @width() - 20
 			height = 30 * dataSet.length
 
@@ -64,9 +69,13 @@ module.exports =
 			bars
 			.append("rect")
 			.attr("x", 0)
-			.attr("width", (d) -> scaleX(d.suspicious))
+			.attr("width", 0)
 			.attr("height", scaleY.bandwidth())
 			.attr("fill", "blue")
+			.transition()
+			.duration(duration)
+			.delay((d,i) -> i * delay)
+			.attr("width", (d) -> scaleX(d.suspicious))
 
 			# コードのラベルを描画
 			bars
@@ -74,16 +83,32 @@ module.exports =
 			.attr("class", "code")
 			.attr("y", scaleY.bandwidth() / 2)
 			.attr("fill", "white")
+			.attr("opacity", 0)
 			.text((d) -> d.raw)
+			.transition()
+			.delay(duration / 10)
+			.transition()
+			.duration(duration / 2)
+			.delay((d,i) -> i * delay)
+			.attr("opacity", 1)
 
 			# 疑わしさのラベルを描画
 			bars
 			.append("text")
 			.attr("class", "suspicious")
-			.attr("x", (d) -> scaleX(d.suspicious) - 3)
+			.attr("x", 0 - 3)
 			.attr("y", scaleY.bandwidth() / 2)
 			.attr("fill", "white")
 			.text((d) -> d.suspicious)
+			.transition()
+			.duration(duration)
+			.delay((d,i) -> i * delay)
+			.attr("x", (d) -> scaleX(d.suspicious) - 3)
+			.tween("text", (d) ->
+				i = d3.interpolate(0, d.suspicious)
+				return (t) =>
+					this.textContent = Math.round(i(t))
+				)
 
 
 		# 棒グラフ
