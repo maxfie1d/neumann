@@ -2,7 +2,8 @@
 d3 = require 'd3'
 d3sc = require 'd3-scale-chromatic'
 $ = require 'jQuery'
-ActiveFile = require '../models/active-file'
+TextEditorHelper = require '../helpers/text-editor-helper'
+FileHelper = require '../helpers/file-helper'
 
 module.exports =
 	class SuspiciousGraphView extends ScrollView
@@ -28,8 +29,11 @@ module.exports =
 			# @renderBarChart()
 			# @renderPieChart()
 
-			# TODO: editorIdからTextEditorを取得し，CodeLineを取得するようにする
-			ActiveFile.getEvaluatedCodeLines().then (codeLines) =>
+			editor = TextEditorHelper.getEditorForId(@editorId)
+			if not editor?
+				return
+
+			FileHelper.getEvaluatedCodeLines(editor.getPath()).then (codeLines) =>
 				@renderSuspiciousGraph(codeLines)
 
 
