@@ -1,5 +1,6 @@
 {ScrollView} = require 'atom-space-pen-views'
 d3 = require 'd3'
+d3sc = require 'd3-scale-chromatic'
 $ = require 'jQuery'
 ActiveFile = require '../models/active-file'
 
@@ -58,6 +59,11 @@ module.exports =
 			.range([0, height])
 			.paddingInner(.3) # 棒グラフの間隔(bandに対する割合)
 
+			scaleColor = d3.scaleSequential()
+			.domain([0, d3.max(dataSet, (d) -> d.suspicious)])
+			.interpolator((t) ->
+				return d3sc.interpolateGnBu(0.5 + t/2))
+
 			bars = svg.selectAll(".bar")
 			.data(dataSet)
 			.enter()
@@ -71,11 +77,12 @@ module.exports =
 			.attr("x", 0)
 			.attr("width", 0)
 			.attr("height", scaleY.bandwidth())
-			.attr("fill", "blue")
+			.attr("fill", scaleColor(scaleColor.domain()[0]))
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
 			.attr("width", (d) -> scaleX(d.suspicious))
+			.attr("fill", (d) -> scaleColor(d.suspicious))
 
 			# コードのラベルを描画
 			bars
