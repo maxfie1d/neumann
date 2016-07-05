@@ -1,7 +1,6 @@
 {ScrollView} = require 'atom-space-pen-views'
 d3 = require 'd3'
 d3sc = require 'd3-scale-chromatic'
-$ = require 'jQuery'
 TextEditorHelper = require '../helpers/text-editor-helper'
 FileHelper = require '../helpers/file-helper'
 
