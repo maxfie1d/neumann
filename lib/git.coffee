@@ -1,21 +1,20 @@
 {BufferedProcess} = require 'atom'
 {Directory} = require 'atom'
 
-getRepository = ->
+getRepository = (path) ->
 	new Promise (resolve, reject) ->
-		getRepositoryForActiveFile()
+		getRepositoryForFile(path)
 		.then (repository) ->
 			resolve(repository)
 		.catch (e) ->
 			atom.notifications.addError(e)
 			reject(e)
 
-getRepositoryForActiveFile = ->
+getRepositoryForFile = (path) ->
 	new Promise (resolve, reject) ->
 		project = atom.project
-		activeFilePath = atom.workspace.getActiveTextEditor()?.getPath()
 		# Atomで開いているディレクトリのうち，現在開いているファイルを含むものを選ぶ
-		directory = project.getDirectories().filter((d) -> d.contains(activeFilePath))[0]
+		directory = project.getDirectories().filter((d) -> d.contains(path))[0]
 		if directory?
 			project.repositoryForDirectory(directory)
 			.then (repository) ->
@@ -49,11 +48,14 @@ module.exports = git =
 				atom.notifications.addError('git is not available, or not on the PATH')
 				reject 'Could not find git'
 
-	blame: ->
-		getRepository()
+	blame: (path)->
+		if not path?
+			path = atom.workspace.getActiveTextEditor()?.getPath()
+			
+		getRepository(path)
 		.then (repo) ->
 			# GitRepository.relativize()を使うとrealpathが返されるようなので
 			# Direcotry.relativize()を使っています
 			workingDir = new Directory(repo.getWorkingDirectory())
-			file = workingDir.relativize(atom.workspace.getActiveTextEditor()?.getPath()).replace(/\\/g, '/')
+			file = workingDir.relativize(path).replace(/\\/g, '/')
 			git.execute(['blame', file], cwd: repo.getWorkingDirectory())
