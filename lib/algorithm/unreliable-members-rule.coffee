@@ -5,7 +5,7 @@ module.exports =
 	class UnreliableMembersRule extends RuleBase
 		constructor: (@priority=1) ->
 
-		evaluate: (codeLine) ->
+		evaluate: (codeLine,codeLines) ->
 			# 信頼できないメンバーを取得
 			unreliableMembers = atom.config.get('neumann.unreliableMembers')
 

@@ -7,6 +7,7 @@ module.exports =
 		rules = [
 			new MidnightRule(16, 3, 10), # 16時～3時に書かれたコードは危険とする
 			new UnreliableMembersRule(10),
+			new EditHistoryRule(10),
 		]
 
 		@evaluate: (codeLines) =>
@@ -17,6 +18,6 @@ module.exports =
 					codeLine.suspicious = 0
 				else
 					for rule in rules
-						codeLine.suspicious += rule.evaluate(codeLine)
+						codeLine.suspicious += rule.evaluate(codeLine,codeLines)
 
 			return codeLines

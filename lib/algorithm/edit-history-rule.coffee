@@ -1,27 +1,25 @@
 RuleBase = require './rule-base'
 
 module.exports =
-	# 夜に書かれたコードはやばいルールです
+	# 最近に書かれたコードはやばいルールです
 	class EditHistoryRule extends RuleBase
 		constructor: (@priority=1) ->
 
-		evaluate: (codeLine) ->
-			hours = codeLine.timestamp.getHours()
+		evaluate: (codeLine,codeLines) ->
+
 			# maxtime mintime を求める			@timestamp = new Date(collection[3])
-			maxtime = 0	#NewestTime-X　最大
-			todaytime = new Date
-			mintime = todaytime.getTime()	#OldestTime-X 	最小
+			maxTime = 0	#NewestTime　最大値	X2
+			todayTime = new Date
+			minTime = todayTime.getTime()	#OldestTime 	最小値	X1
 
-			for codeline in codeLines
-				if maxtime < codeline.timestamp.getTime()
-					maxtime = codeline.timestamp.getTime()
+			for codeLine in codeLines
+				if maxTime < codeLine.timestamp.getTime()
+					maxTime = codeLine.timestamp.getTime()
 
-				if mintime > codeline.timestamp.getTime()
-					mintime = codeline.timestamp.getTime()
+				if minTime > codeLine.timestamp.getTime()
+					mintime = codeLine.timestamp.getTime()
 
-			scale = maxtime - mintime
+			scale = maxTime - minTime	#変域	X2-X1
 
-			if hours >= @start || hours <= @end
-				return 10 * @priority
-			else
-				return 0
+			parcentage = (codeLine.timestamp.getTime() - minTime) / scale		#今の所比例で点数付け	要変更?
+			return 10 * @priority * parcentage
