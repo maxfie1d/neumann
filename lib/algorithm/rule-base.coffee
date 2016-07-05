@@ -9,5 +9,5 @@ module.exports =
 		constructor: ->
 			@priority = 1
 
-		evaluate: (codeLine,codeLines) ->
+		evaluate: (codeLines) ->
 			throw new Error("NotImplementedException")

@@ -5,7 +5,7 @@ module.exports =
 	class EditHistoryRule extends RuleBase
 		constructor: (@priority=1) ->
 
-		evaluate: (codeLine,codeLines) ->
+		evaluate: (codeLines) ->
 
 			# maxtime mintime を求める			@timestamp = new Date(collection[3])
 			maxTime = 0	#NewestTime　最大値	X2
@@ -22,4 +22,4 @@ module.exports =
 				scale = maxTime - minTime	#変域	X2-X1
 
 				parcentage = (codeLine.timestamp.getTime() - minTime) / scale		#今の所比例で点数付け	要変更?
-				return 10 * @priority * parcentage
+				codeLine.suspicious += 10 * @priority * parcentage

@@ -22,8 +22,7 @@ module.exports =
 					not codeLine.timestamp < validDate
 					)
 
-			for codeLine in codeLines
-				for rule in rules
-					codeLine.suspicious += rule.evaluate(codeLine,codeLines)
+			for rule in rules
+				rule.evaluate(codeLines)
 
 			return codeLines
