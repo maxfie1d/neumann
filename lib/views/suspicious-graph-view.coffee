@@ -9,7 +9,7 @@ module.exports =
 		@content: ->
 			@div class: 'suspicious-graph', =>
 				@div outlet: 'container', =>
-					@h1 'Graph'
+					@h1 'Suspicious Graph'
 
 		constructor: ({@editorId})->
 			super
@@ -40,9 +40,17 @@ module.exports =
 			duration = 1500
 			# アニメーションのディレイ
 			delay = 50
+			# 棒の縦幅
+			barHeight = 24
+			# 棒の右端の縦棒のはみ出し部分
+			barOverflow = 17
+			# グラフの間隔
+			padding = 8
+			# ひとつのバーで使う領域
+			bandwidth = barHeight + barOverflow + padding
 
 			width = @width() - 20
-			height = 30 * dataSet.length
+			height = bandwidth * dataSet.length - padding
 
 			# svg要素を追加
 			svg = d3.select(@container.get(0))
@@ -57,7 +65,7 @@ module.exports =
 			scaleY = d3.scaleBand()
 			.domain(d3.range(dataSet.length))
 			.range([0, height])
-			.paddingInner(.3) # 棒グラフの間隔(bandに対する割合)
+			.paddingInner(padding / bandwidth)
 
 			scaleColor = d3.scaleSequential()
 			.domain([0, d3.max(dataSet, (d) -> d.suspicious)])
@@ -71,24 +79,57 @@ module.exports =
 			.attr("class", "bar")
 			.attr("transform", (d, i) -> "translate(0, #{scaleY(i)})")
 
+			# 棒の背景を描画
+			bars
+			.append("rect")
+			.attr("x", 0)
+			.attr("width", width)
+			.attr("height", barHeight)
+			.attr("fill", "white")
+			.attr("opacity", 0)
+			.transition()
+			.duration(duration / 2)
+			.delay((d,i) -> i * delay)
+			.attr("opacity", .05)
+
 			# 棒を描画
 			bars
 			.append("rect")
 			.attr("x", 0)
 			.attr("width", 0)
-			.attr("height", scaleY.bandwidth())
+			.attr("height", barHeight)
 			.attr("fill", scaleColor(scaleColor.domain()[0]))
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
 			.attr("width", (d) -> scaleX(d.suspicious))
+			.attrTween("fill", (d) ->
+				return (t) ->
+					scaleColor(d.suspicious * t)
+					)
+
+			# 棒の右端の縦棒を描画
+			bars
+			.append("rect")
+			.attr("x", 0 - 3)
+			.attr("width", 3)
+			.attr("height", barHeight + barOverflow)
 			.attr("fill", (d) -> scaleColor(d.suspicious))
+			.transition()
+			.duration(duration)
+			.delay((d,i) -> i * delay)
+			.attr("x", (d) -> scaleX(d.suspicious) - 3)
+			.attrTween("fill", (d) ->
+				return (t) ->
+					scaleColor(d.suspicious * t)
+					)
 
 			# コードのラベルを描画
 			bars
 			.append("text")
 			.attr("class", "code")
-			.attr("y", scaleY.bandwidth() / 2)
+			.attr("x", 5)
+			.attr("y", barHeight / 2)
 			.attr("fill", "white")
 			.attr("opacity", 0)
 			.text((d) -> d.raw)
@@ -103,14 +144,14 @@ module.exports =
 			bars
 			.append("text")
 			.attr("class", "suspicious")
-			.attr("x", 0 - 3)
-			.attr("y", scaleY.bandwidth() / 2)
+			.attr("x", 0 - 5)
+			.attr("y", barHeight + barOverflow - 1)
 			.attr("fill", "white")
 			.text((d) -> d.suspicious)
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
-			.attr("x", (d) -> scaleX(d.suspicious) - 3)
+			.attr("x", (d) -> scaleX(d.suspicious) - 5)
 			.tween("text", (d) ->
 				i = d3.interpolate(0, d.suspicious)
 				return (t) =>
