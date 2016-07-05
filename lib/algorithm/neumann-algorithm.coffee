@@ -11,14 +11,19 @@ module.exports =
 			new EditHistoryRule(10),
 		]
 
+		# 評価対象を絞り込む場合はその初日をインスタンスvalidDateに入れてください
+		# 例) validDate = new Date("2016-07-01")
+		validDate = null
+
 		@evaluate: (codeLines) =>
+			# 評価対象の絞り込み
+			if validDate?
+				codeLines = codeLines.filter((codeLine) ->
+					not codeLine.timestamp < validDate
+					)
+
 			for codeLine in codeLines
-				# 評価対象を絞り込む場合はその初日をインスタンスvalidDateに入れてください
-				# 例) validDate = new Date("2016-07-01")
-				if validDate? && codeLine.timestamp < validDate
-					codeLine.suspicious = 0
-				else
-					for rule in rules
-						codeLine.suspicious += rule.evaluate(codeLine,codeLines)
+				for rule in rules
+					codeLine.suspicious += rule.evaluate(codeLine,codeLines)
 
 			return codeLines
