@@ -14,7 +14,7 @@ module.exports =
 
 		constructor: ({@editorId})->
 			super
-
+			@editor = TextEditorHelper.getEditorForId(@editorId)
 
 		# タブに表示されるタイトル
 		getTitle: ->
@@ -26,12 +26,9 @@ module.exports =
 
 		# DOMの表示が完了したら描画する
 		attached: ->
-			editor = TextEditorHelper.getEditorForId(@editorId)
-			if not editor?
-				return
-
-			FileHelper.getEvaluatedCodeLines(editor.getPath()).then (codeLines) =>
-				@renderSuspiciousGraph(codeLines)
+			if @editor?
+				FileHelper.getEvaluatedCodeLines(@editor.getPath()).then (codeLines) =>
+					@renderSuspiciousGraph(codeLines)
 
 
 		renderSuspiciousGraph: (codeLines) ->
