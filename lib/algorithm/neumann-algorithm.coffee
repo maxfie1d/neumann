@@ -1,6 +1,7 @@
 AlgorithmBase = require './algorithm-base'
 MidnightRule = require './midnight-rule'
 UnreliableMembersRule = require './unreliable-members-rule'
+EditHistoryRule = require './edit-history-rule'
 
 module.exports =
 	class NeumannAlgorithm extends AlgorithmBase
