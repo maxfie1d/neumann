@@ -11,12 +11,12 @@ module.exports =
 
 		@evaluate: (codeLines) =>
 			for codeLine in codeLines
+			# 評価対象を絞り込む場合はその初日をインスタンスvalidDateに入れてください
+			# 例) validDate = new Date("2016-07-01")
+			if validDate? && codeLine.timestamp < validDate
+				codeLine.suspicious = 0
+			else
 				for rule in rules
 					codeLine.suspicious += rule.evaluate(codeLine)
-				# 評価対象を絞り込む場合はその初日をインスタンスvalidDateに入れてください
-				# 例) validDate = new Date("2016-07-01")
-				if validDate?
-					if codeLine.timestamp < validDate
-						codeLine.suspicious = 0
 
 			return codeLines
