@@ -8,7 +8,6 @@ module.exports =
 		rules = [
 			new MidnightRule(16, 3, 10), # 16時～3時に書かれたコードは危険とする
 			new UnreliableMembersRule(10),
-			new EditHistoryRule(10),
 		]
 
 		# 評価対象を絞り込む場合はその初日をインスタンスvalidDateに入れてください
