@@ -27,12 +27,21 @@
 	.bar{
 		// ラベルのスタイル
 		text {
-			dominant-baseline: central; // 上下の基準を中央に
+			&.code {
+				dominant-baseline: central; // 上下の基準を中央に
+				fill: white;
+			}
 
 			&.suspicious{
 				dominant-baseline: auto; // 上下の基準を下に
 				text-anchor: end; // 右端揃え
+				fill: @text-color;
 			}
+		}
+		
+		// バーの背景のスタイル
+		rect.background {
+			fill: @text-color;
 		}
 	}
 }

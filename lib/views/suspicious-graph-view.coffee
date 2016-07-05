@@ -86,10 +86,10 @@ module.exports =
 			# 棒の背景を描画
 			bars
 			.append("rect")
+			.attr("class", "background")
 			.attr("x", 0)
 			.attr("width", width)
 			.attr("height", barHeight)
-			.attr("fill", "white")
 			.attr("opacity", 0)
 			.transition()
 			.duration(duration / 2)
@@ -134,7 +134,6 @@ module.exports =
 			.attr("class", "code")
 			.attr("x", 5)
 			.attr("y", barHeight / 2)
-			.attr("fill", "white")
 			.attr("opacity", 0)
 			.text((d) -> d.raw)
 			.transition()
@@ -150,7 +149,6 @@ module.exports =
 			.attr("class", "suspicious")
 			.attr("x", 0 - 5)
 			.attr("y", barHeight + barOverflow - 1)
-			.attr("fill", "white")
 			.text((d) -> d.suspicious)
 			.transition()
 			.duration(duration)
