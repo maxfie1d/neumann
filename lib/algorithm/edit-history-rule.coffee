@@ -19,7 +19,7 @@ module.exports =
 				if minTime > codeLine.timestamp.getTime()
 					mintime = codeLine.timestamp.getTime()
 
-			scale = maxTime - minTime	#変域	X2-X1
+				scale = maxTime - minTime	#変域	X2-X1
 
-			parcentage = (codeLine.timestamp.getTime() - minTime) / scale		#今の所比例で点数付け	要変更?
-			return 10 * @priority * parcentage
+				parcentage = (codeLine.timestamp.getTime() - minTime) / scale		#今の所比例で点数付け	要変更?
+				return 10 * @priority * parcentage
