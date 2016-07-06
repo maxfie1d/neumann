@@ -1,4 +1,4 @@
-{CompositeDisposable} = require 'atom'
+{CompositeDisposable, Emitter} = require 'atom'
 git = require '../git'
 SuspiciousLinesView = require '../views/suspicious-lines-view'
 CodeLine = require '../models/code-line'
@@ -9,6 +9,7 @@ module.exports =
 	class SuspiciousLinesModel
 		constructor: (@editor) ->
 			@subscriptions = new CompositeDisposable
+			@emitter = new Emitter
 
 			# コマンドを登録
 			@subscriptions.add atom.commands.add atom.views.getView(@editor), 'neumann:suspicious-lines': => @invoke()
@@ -38,12 +39,22 @@ module.exports =
 				# Viewにコードを渡す
 				@view.create(codeLines)
 
+				# イベントを発火
+				@emitter.emit 'suspicious-lines-attach', @editor
+
 				@handler = @editor.onDidStopChanging =>
 					@destroy()
 
 			.catch (e) ->
 				console.log e
 
+		onSuspiciousLinesAttach: (callback) ->
+			@emitter.on 'suspicious-lines-attach', callback
+
+		onSuspiciousLinesDetach: (callback) ->
+			@emitter.on 'suspicious-lines-detach', callback
+
 		destroy: ->
 			@view.destroy()
 			@handler?.dispose()
+			@emitter.emit 'suspicious-lines-detach', @editor
