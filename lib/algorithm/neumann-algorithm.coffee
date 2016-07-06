@@ -2,6 +2,7 @@ AlgorithmBase = require './algorithm-base'
 MidnightRule = require './midnight-rule'
 UnreliableMembersRule = require './unreliable-members-rule'
 EditHistoryRule = require './edit-history-rule'
+Rules = require '../algorithm/rules'
 
 module.exports =
 	class NeumannAlgorithm extends AlgorithmBase
@@ -26,3 +27,19 @@ module.exports =
 				rule.evaluate(codeLines)
 
 			return codeLines
+
+		# 評価の理由を取得します
+		evaluationReason: (codeLine) ->
+			reasons = []
+			for evaluation in codeLine.evaluations
+				switch evaluation.rule
+					when Rules.Midnight
+						rule = @rules[0]
+					when Rules.Unreliable
+						rule = @rules[1]
+					when Rules.EditHistory
+						console.error 'error'
+
+				reasons.push rule.evaluationReason(evaluation)
+
+			return reasons
