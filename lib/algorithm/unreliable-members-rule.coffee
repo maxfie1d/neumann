@@ -1,5 +1,7 @@
 RuleBase = require './rule-base'
 Rules = require './rules'
+Levels = require './levels'
+EvaluationReason = require './evaluation-reason'
 
 module.exports =
 	# このメンバーはやばいルール
@@ -19,3 +21,7 @@ module.exports =
 					}
 
 					codeLine.suspicious += 10 * @priority
+
+		evaluationReason: (evaluation) ->
+			reason = "#{evaluation.args[0]}によって書かれたコードです"
+			return new EvaluationReason(Levels.warning, reason)
