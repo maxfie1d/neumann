@@ -1,4 +1,5 @@
 RuleBase = require './rule-base'
+Rules = require './rules'
 
 module.exports =
 	# このメンバーはやばいルール
@@ -11,5 +12,10 @@ module.exports =
 				unreliableMembers = atom.config.get('neumann.unreliableMembers')
 
 				# 信頼できないメンバーのコードなら危険とする
-				if unreliableMembers.indexOf(codeLine.author) >= 0
+				if (index = unreliableMembers.indexOf(codeLine.author)) >= 0
+					codeLine.evaluations.push {
+						rule: Rules.Unreliable
+						args: [unreliableMembers[index]]
+					}
+
 					codeLine.suspicious += 10 * @priority
