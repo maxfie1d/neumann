@@ -4,11 +4,6 @@ module.exports =
 			@decorations = []
 
 		create: (output)=>
-			# 前のデコレーションとハンドラーを削除
-			@destroy()
-
-			@handler = @editor.onDidStopChanging(@destroy)
-
 			@createView(output)
 
 		createView: (codeLines) ->
@@ -30,5 +25,3 @@ module.exports =
 			decoration.getMarker().destroy() for decoration in @decorations
 			# キャッシュを空に
 			@decorations = []
-			# ハンドラーを削除
-			@handler?.dispose()
