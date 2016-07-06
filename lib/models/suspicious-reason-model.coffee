@@ -1,7 +1,7 @@
 module.exports =
   class SuspiciousReasonModel
     constructor: (model) ->
-      model.onSuspiciousLinesAttach ({editor: @editor, codeLines: @codeLines}) => @create()
+      model.onSuspiciousLinesAttach ({editor: @editor, codeLines: @codeLines, algorithm: @algorithm}) => @create()
       model.onSuspiciousLinesDetach (editor) => @destroy(editor)
 
     create: ->

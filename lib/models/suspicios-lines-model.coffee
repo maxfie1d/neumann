@@ -44,7 +44,7 @@ module.exports =
 				@view.create(codeLines)
 
 				# イベントを発火
-				@emitter.emit 'suspicious-lines-attach', editor: @editor, codeLines: codeLines
+				@emitter.emit 'suspicious-lines-attach', editor: @editor, codeLines: codeLines, algorithm: @algorithm
 
 				@handler = @editor.onDidStopChanging =>
 					@destroy()
