@@ -11,3 +11,6 @@ module.exports =
 
 		evaluate: (codeLines) ->
 			throw new Error("NotImplementedException")
+
+		evaluationReason: (codeLine) ->
+			throw new Error("NotImplementedException")
