@@ -8,7 +8,7 @@ module.exports =
       @handler = @editor?.onDidChangeCursorPosition (args) =>
         newPositionLine = args.newBufferPosition.row + 1
         codeLine = x for x in @codeLines when x.line == newPositionLine
-        console.log codeLine.raw
+        console.log @algorithm.evaluationReason(codeLine)
 
     destroy: (editor) ->
       @handler?.dispose()
