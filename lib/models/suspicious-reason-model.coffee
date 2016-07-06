@@ -1,13 +1,14 @@
 module.exports =
   class SuspiciousReasonModel
     constructor: (model) ->
-      model.onSuspiciousLinesAttach (editor) => @create(editor)
+      model.onSuspiciousLinesAttach ({editor: @editor, codeLines: @codeLines}) => @create()
       model.onSuspiciousLinesDetach (editor) => @destroy(editor)
 
-    create: (editor) ->
-      @handler = editor?.onDidChangeCursorPosition (args) ->
-        newPosition = args.newBufferPosition.row
-        console.log "#{newPosition+1}行目"
+    create: ->
+      @handler = @editor?.onDidChangeCursorPosition (args) =>
+        newPositionLine = args.newBufferPosition.row + 1
+        codeLine = x for x in @codeLines when x.line == newPositionLine
+        console.log codeLine.raw
 
     destroy: (editor) ->
       @handler?.dispose()
