@@ -1,4 +1,5 @@
 RuleBase = require './rule-base'
+Rules = require './rules'
 Levels = require './levels'
 EvaluationReason = require './evaluation-reason'
 
@@ -12,6 +13,12 @@ module.exports =
 				hours = codeLine.timestamp.getHours()
 				# @startから@endまでに書かれたコードなら危険と判定する
 				if hours >= @start || hours <= @end
+
+					# MidnightRuleで危険と判定されたことを記録します
+					codeLine.evaluations.push {
+						rule: Rules.Midnight
+					}
+
 					codeLine.suspicious += 10 * @priority
 
 		evaluationReason: (evaluation) ->
