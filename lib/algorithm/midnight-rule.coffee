@@ -1,4 +1,6 @@
 RuleBase = require './rule-base'
+Levels = require './levels'
+EvaluationReason = require './evaluation-reason'
 
 module.exports =
 	# 夜に書かれたコードはやばいルールです
@@ -11,3 +13,7 @@ module.exports =
 				# @startから@endまでに書かれたコードなら危険と判定する
 				if hours >= @start || hours <= @end
 					codeLine.suspicious += 10 * @priority
+
+		evaluationReason: (evaluation) ->
+			reason = "#{@start}時から#{@end}時の間に書かれたコードです"
+			return new EvaluationReason(Levels.warning, reason)
