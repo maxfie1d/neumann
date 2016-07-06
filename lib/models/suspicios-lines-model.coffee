@@ -33,14 +33,17 @@ module.exports =
 						codeLines = RandomAlgorithm.evaluate(codeLines)
 
 				# 前のデコレーションとハンドラーを削除
-				@view.destroy()
-				@handler?.dispose()
+				@destroy()
 
 				# Viewにコードを渡す
 				@view.create(codeLines)
 
 				@handler = @editor.onDidStopChanging =>
-					@view.destroy()
-					@handler.dispose()
+					@destroy()
+
 			.catch (e) ->
 				console.log e
+
+		destroy: ->
+			@view.destroy()
+			@handler?.dispose()
