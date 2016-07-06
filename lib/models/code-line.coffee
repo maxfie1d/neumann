@@ -16,5 +16,8 @@ module.exports =
 			# 疑わしさの度合い
 			@suspicious = 0
 
+			# 危険と判断したルールによる評価
+			@evaluations = []
+
 		toString: =>
 			@raw
