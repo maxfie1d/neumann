@@ -8,7 +8,7 @@ module.exports =
 			@commitId = collection[1]
 			@author = collection[2]
 			@timestamp = new Date(collection[3])
-			@line = collection[4]
+			@line = Number(collection[4])
 			@code = collection[5]
 
 			@raw	= line
