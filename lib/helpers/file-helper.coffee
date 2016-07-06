@@ -4,6 +4,8 @@ RandomAlgorithm = require '../algorithm/random-algorithm'
 NeumannAlgorithm = require '../algorithm/neumann-algorithm'
 
 module.exports = FileHelper =
+	algorithm: null
+
 	getCodeLines: (path)->
 		new Promise (resolve, reject) ->
 			git.blame(path)
@@ -26,8 +28,10 @@ module.exports = FileHelper =
 				algorithm = atom.config.get('neumann.algorithm')
 				switch algorithm
 					when "Neumann Algorithm"
-						codeLines = NeumannAlgorithm.evaluate(codeLines)
+						algorithm = new NeumannAlgorithm() unless @algorithm instanceof NeumannAlgorithm
 					when "Random Algorithm"
-						codeLines = RandomAlgorithm.evaluate(codeLines)
+						algorithm = new RandomAlgorithm() unless @algorithm instanceof RandomAlgorithm
+
+				codeLines = algorithm.evaluate(codeLines)
 
 				resolve(codeLines)

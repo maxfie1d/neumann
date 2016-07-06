@@ -11,6 +11,8 @@ module.exports =
 			@subscriptions = new CompositeDisposable
 			@emitter = new Emitter
 
+			@algorithm = null
+
 			# コマンドを登録
 			@subscriptions.add atom.commands.add atom.views.getView(@editor), 'neumann:suspicious-lines': => @invoke()
 
@@ -29,9 +31,11 @@ module.exports =
 				algorithm = atom.config.get('neumann.algorithm')
 				switch algorithm
 					when "Neumann Algorithm"
-						codeLines = NeumannAlgorithm.evaluate(codeLines)
+						@algorithm = new NeumannAlgorithm() unless @algorithm instanceof NeumannAlgorithm
 					when "Random Algorithm"
-						codeLines = RandomAlgorithm.evaluate(codeLines)
+						@algorithm = new RandomAlgorithm() unless @algorithm instanceof RandomAlgorithm
+
+				codeLines = @algorithm.evaluate(codeLines)
 
 				# 前のデコレーションとハンドラーを削除
 				@destroy()
