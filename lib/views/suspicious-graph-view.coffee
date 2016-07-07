@@ -146,7 +146,11 @@ module.exports =
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
-			.attr("x", (d) -> scaleX(d.totalSuspicious()) - 5)
+			.attr("x", (d) ->
+				if scaleX(d.totalSuspicious()) - 5 > 10
+					scaleX(d.totalSuspicious()) - 5
+				else
+					10)
 			.tween("text", (d) ->
 				i = d3.interpolate(0, d.totalSuspicious())
 				return (t) =>
