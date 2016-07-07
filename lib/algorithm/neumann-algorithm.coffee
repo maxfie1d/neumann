@@ -2,6 +2,7 @@ AlgorithmBase = require './algorithm-base'
 MidnightRule = require './midnight-rule'
 UnreliableMembersRule = require './unreliable-members-rule'
 EditHistoryRule = require './edit-history-rule'
+NotCommittedRule = require './not-committed-rule'
 Rules = require '../algorithm/rules'
 
 module.exports =
@@ -10,6 +11,7 @@ module.exports =
 			@rules = [
 				new MidnightRule(16, 3, 10), # 16時～3時に書かれたコードは危険とする
 				new UnreliableMembersRule(10),
+				new NotCommittedRule(),
 			]
 
 			# 評価対象を絞り込む場合はその初日をインスタンスvalidDateに入れてください
@@ -40,6 +42,8 @@ module.exports =
 							rule = @rules[1]
 						when Rules.EditHistory
 							console.error 'error'
+						when Rules.NotCommittedRule
+							rule = @rules[2]
 
 					reasons.push rule.evaluationReason(evaluation)
 
