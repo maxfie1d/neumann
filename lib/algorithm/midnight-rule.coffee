@@ -17,9 +17,8 @@ module.exports =
 					# MidnightRuleで危険と判定されたことを記録します
 					codeLine.evaluations.push {
 						rule: Rules.Midnight
+						suspicious: 10 * @priority
 					}
-
-					codeLine.suspicious += 10 * @priority
 
 		evaluationReason: (evaluation) ->
 			reason = "#{@start}時から#{@end}時の間に書かれたコードです"

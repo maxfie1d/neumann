@@ -17,10 +17,9 @@ module.exports =
 				if (index = unreliableMembers.indexOf(codeLine.author)) >= 0
 					codeLine.evaluations.push {
 						rule: Rules.Unreliable
+						suspicious: 10 * @priority
 						args: [unreliableMembers[index]]
 					}
-
-					codeLine.suspicious += 10 * @priority
 
 		evaluationReason: (evaluation) ->
 			reason = "#{evaluation.args[0]}によって書かれたコードです"
