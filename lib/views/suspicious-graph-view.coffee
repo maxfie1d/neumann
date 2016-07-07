@@ -56,7 +56,7 @@ module.exports =
 			.attr("height", height)
 
 			scaleX = d3.scaleLinear()
-			.domain([0, d3.max(dataSet, (d) -> d.suspicious)])
+			.domain([0, d3.max(dataSet, (d) -> d.totalSuspicious())])
 			.range([0, width])
 
 			scaleY = d3.scaleBand()
@@ -65,7 +65,7 @@ module.exports =
 			.paddingInner(padding / bandwidth)
 
 			scaleColor = d3.scaleSequential()
-			.domain([0, d3.max(dataSet, (d) -> d.suspicious)])
+			.domain([0, d3.max(dataSet, (d) -> d.totalSuspicious())])
 			.interpolator((t) ->
 				return d3sc.interpolateGnBu(0.5 + t/2))
 
@@ -99,10 +99,10 @@ module.exports =
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
-			.attr("width", (d) -> scaleX(d.suspicious))
+			.attr("width", (d) -> scaleX(d.totalSuspicious()))
 			.attrTween("fill", (d) ->
 				return (t) ->
-					scaleColor(d.suspicious * t)
+					scaleColor(d.totalSuspicious() * t)
 					)
 
 			# 棒の右端の縦棒を描画
@@ -111,14 +111,14 @@ module.exports =
 			.attr("x", 0 - 3)
 			.attr("width", 3)
 			.attr("height", barHeight + barOverflow)
-			.attr("fill", (d) -> scaleColor(d.suspicious))
+			.attr("fill", (d) -> scaleColor(d.totalSuspicious()))
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
-			.attr("x", (d) -> scaleX(d.suspicious) - 3)
+			.attr("x", (d) -> scaleX(d.totalSuspicious()) - 3)
 			.attrTween("fill", (d) ->
 				return (t) ->
-					scaleColor(d.suspicious * t)
+					scaleColor(d.totalSuspicious() * t)
 					)
 
 			# コードのラベルを描画
@@ -142,13 +142,13 @@ module.exports =
 			.attr("class", "suspicious")
 			.attr("x", 0 - 5)
 			.attr("y", barHeight + barOverflow - 1)
-			.text((d) -> d.suspicious)
+			.text((d) -> d.totalSuspicious())
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
-			.attr("x", (d) -> scaleX(d.suspicious) - 5)
+			.attr("x", (d) -> scaleX(d.totalSuspicious()) - 5)
 			.tween("text", (d) ->
-				i = d3.interpolate(0, d.suspicious)
+				i = d3.interpolate(0, d.totalSuspicious())
 				return (t) =>
 					this.textContent = Math.round(i(t))
 				)
