@@ -48,6 +48,7 @@ module.exports =
 
 				@handler = @editor.onDidStopChanging =>
 					@destroy()
+					@emitter.emit 'suspicious-lines-detach', @editor
 
 			.catch (e) ->
 				console.log e
@@ -61,4 +62,3 @@ module.exports =
 		destroy: ->
 			@view.destroy()
 			@handler?.dispose()
-			@emitter.emit 'suspicious-lines-detach', @editor
