@@ -13,11 +13,15 @@ module.exports =
 
 			@raw	= line
 
-			# 疑わしさの度合い
-			@suspicious = 0
-
 			# 危険と判断したルールによる評価
 			@evaluations = []
 
 		toString: =>
 			@raw
+
+		totalSuspicious: ->
+			sum = 0
+			for evaluation in @evaluations
+				sum += evaluation.suspicious
+
+			return sum
