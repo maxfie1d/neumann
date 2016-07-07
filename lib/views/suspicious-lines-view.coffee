@@ -8,13 +8,13 @@ module.exports =
 
 		createView: (codeLines) ->
 			# 正規化のために疑わしさの最大値を求める
-			maxSuspicious =	Math.max.apply(null, (x.suspicious for x in codeLines))
+			maxSuspicious =	Math.max.apply(null, (x.totalSuspicious() for x in codeLines))
 
 			for codeLine in codeLines
 				position = [codeLine.line - 1, 0]
 				marker = @editor.markBufferPosition(position)
 				# 1から10の10段階に正規化？
-				number = Math.round(1.0 * codeLine.suspicious / maxSuspicious * 9) + 1
+				number = Math.round(1.0 * codeLine.totalSuspicious() / maxSuspicious * 9) + 1
 				decoration = @editor.decorateMarker(marker, {type: 'line-number', class: "suspicious-line-number-#{number}"})
 				@decorations.push decoration
 				decoration = @editor.decorateMarker(marker, {type: 'line', class: "suspicious-line-#{number}"})
