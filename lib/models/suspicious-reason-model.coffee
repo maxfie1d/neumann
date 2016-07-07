@@ -35,7 +35,17 @@ module.exports =
     updateReason: (line) ->
       codeLine = x for x in @codeLines when x.line == line
       @view ?= new SuspiciousReasonView
-      @view.update(@algorithm.evaluationReason(codeLine))
+      reasons = @algorithm.evaluationReason(codeLine)
+
+      # 危険度の小さい順に並び替え
+      reasons.sort (a, b) ->
+        if a.level < b.level
+          return -1
+        if a.level > b.level
+          return 1
+        return 0
+
+      @view.update(reasons)
 
     showOrHide: (item) ->
       if item instanceof TextEditor
