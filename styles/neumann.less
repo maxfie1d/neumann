@@ -3,6 +3,7 @@
 // See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
 // for a full listing of what's available.
 @import "ui-variables";
+@import "variables";
 
 .neumann {
 }
@@ -38,10 +39,56 @@
 				fill: @text-color;
 			}
 		}
-		
+
 		// バーの背景のスタイル
 		rect.background {
 			fill: @text-color;
+		}
+	}
+}
+
+.suspicious-reason {
+	ul.reason-list {
+		padding: 0;
+
+		li {
+			list-style: none;
+			margin: 7px 0;
+
+			.flexbox {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				.level {
+					color: white;
+					margin-right: 8px;
+					padding: 2px 10px;
+					border-radius: 8px;
+					text-align: center;
+
+					&.info {
+						background-color: @green-color;
+					}
+
+					&.warning {
+						background-color: @orange-color;
+					}
+
+					&.error {
+						background-color: @red-color;
+					}
+
+					&.critical {
+						background-color: black;
+						border: solid 2px @red-color;
+					}
+				}
+
+				.reason {
+					flex: 1;
+				}
+			}
 		}
 	}
 }
