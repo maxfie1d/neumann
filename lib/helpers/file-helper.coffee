@@ -19,6 +19,7 @@ module.exports = FileHelper =
 				resolve(codeLines)
 			.catch (e) ->
 				console.log e
+				reject(e)
 
 	getEvaluatedCodeLines: (path)->
 		new Promise (resolve, reject) ->
@@ -35,3 +36,5 @@ module.exports = FileHelper =
 				codeLines = algorithm.evaluate(codeLines)
 
 				resolve(codeLines)
+			.catch (e) ->
+				reject(e)
