@@ -31,15 +31,16 @@ module.exports =
 		# 評価の理由を取得します
 		evaluationReason: (codeLine) ->
 			reasons = []
-			for evaluation in codeLine.evaluations
-				switch evaluation.rule
-					when Rules.Midnight
-						rule = @rules[0]
-					when Rules.Unreliable
-						rule = @rules[1]
-					when Rules.EditHistory
-						console.error 'error'
+			if codeLine?
+				for evaluation in codeLine.evaluations
+					switch evaluation.rule
+						when Rules.Midnight
+							rule = @rules[0]
+						when Rules.Unreliable
+							rule = @rules[1]
+						when Rules.EditHistory
+							console.error 'error'
 
-				reasons.push rule.evaluationReason(evaluation)
+					reasons.push rule.evaluationReason(evaluation)
 
 			return reasons
