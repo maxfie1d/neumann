@@ -19,6 +19,7 @@
 	"dependencies": {
 		"atom-space-pen-views": "latest",
 		"d3": "latest",
-		"d3-scale-chromatic": "latest"
+		"d3-scale-chromatic": "latest",
+		"jQuery": "latest"
 	}
 }
