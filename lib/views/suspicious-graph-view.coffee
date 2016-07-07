@@ -26,8 +26,14 @@ module.exports =
 		# DOMの表示が完了したら描画する
 		attached: ->
 			if @editor?
-				FileHelper.getEvaluatedCodeLines(@editor.getPath()).then (codeLines) =>
+				FileHelper.getEvaluatedCodeLines(@editor.getPath())
+				.then (codeLines) =>
 					@renderSuspiciousGraph(codeLines)
+				.catch (e) =>
+					# エラーの場合はビューを閉じる
+					uri = @getURI()
+					graphPane = atom.workspace.paneForURI(uri)
+					graphPane.destroyItem(graphPane.itemForURI(uri))
 
 
 		renderSuspiciousGraph: (codeLines) ->
