@@ -21,5 +21,8 @@ module.exports =
 
 				scale = maxTime - minTime	#変域	X2-X1
 
-				parcentage = (codeLine.timestamp.getTime() - minTime) / scale		#今の所比例で点数付け	要変更?
-				codeLine.suspicious += 10 * @priority * parcentage
+				percentage = (codeLine.timestamp.getTime() - minTime) / scale		#今の所比例で点数付け	要変更?
+				codeLine.evaluation.push {
+					rule: Rules.EditHistoryRule
+					suspicios: percentage
+				}

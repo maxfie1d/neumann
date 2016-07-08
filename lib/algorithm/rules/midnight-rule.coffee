@@ -17,7 +17,7 @@ module.exports =
 					# MidnightRuleで危険と判定されたことを記録します
 					codeLine.evaluations.push {
 						rule: Rules.Midnight
-						suspicious: 10 * @priority
+						suspicious: 100
 					}
 
 		evaluationReason: (evaluation) ->

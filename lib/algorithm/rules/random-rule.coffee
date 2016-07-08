@@ -6,7 +6,7 @@ EvaluationReason = require '../evaluation-reason'
 
 module.exports =
 	class RandomRule extends RuleBase
-		constructor: (@priority=1) ->
+		constructor: ->
 
 		evaluate: (codeLines) ->
 			for codeLine in codeLines
