@@ -10,11 +10,11 @@ module.exports =
 		constructor: ->
 			@rules = [
 				{
-					rule: new MidnightRule(16, 3, 10)
+					rule: new MidnightRule(16, 3)
 					priority: 10
 				},
 				{
-					rule: new UnreliableMembersRule(10)
+					rule: new UnreliableMembersRule()
 					priority: 10
 				},
 				{
@@ -41,7 +41,7 @@ module.exports =
 			# (注) 一時的に各suspiciousが最大100であると仮定しているが、これは要修正
 			for line in CodeLine
 				for sus in line.evaluations
-					line.totalSuspicious += sus['suspicious'] 
+					line.totalSuspicious += sus['suspicious']
 
 			return codeLines
 
