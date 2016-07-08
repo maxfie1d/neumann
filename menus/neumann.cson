@@ -1,26 +1,26 @@
 # See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
 'context-menu':
-  'atom-text-editor': [
-    {
-      'label': 'Toggle neumann'
-      'command': 'neumann:toggle'
-    }
-  ]
+	'atom-text-editor': [
+		{
+			'label': 'Toggle neumann'
+			'command': 'neumann:toggle'
+		}
+	]
 'menu': [
-  {
-    'label': 'Packages'
-    'submenu': [
-      'label': 'neumann'
-      'submenu': [
-        {
-          'label': 'git blame'
-          'command': 'neumann:git-blame'
-        },
-        {
-          'label': 'Show suspicious graph'
-          'command': 'neumann:suspicious-graph'
-        }
-      ]
-    ]
-  }
+	{
+		'label': 'Packages'
+		'submenu': [
+			'label': 'neumann'
+			'submenu': [
+				{
+					'label': 'git blame'
+					'command': 'neumann:git-blame'
+				},
+				{
+					'label': 'Show suspicious graph'
+					'command': 'neumann:suspicious-graph'
+				}
+			]
+		]
+	}
 ]

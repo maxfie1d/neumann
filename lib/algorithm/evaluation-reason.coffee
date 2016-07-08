@@ -1,4 +1,3 @@
 module.exports =
-  class EvaluationReason
-    constructor: (@level, @reason) ->
-      
+	class EvaluationReason
+		constructor: (@level, @reason) ->
