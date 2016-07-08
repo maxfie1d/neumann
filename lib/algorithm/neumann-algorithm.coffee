@@ -32,16 +32,16 @@ module.exports =
 			if @validDate?
 				codeLines = codeLines.filter((codeLine) ->
 					not codeLine.timestamp < @validDate
-					)
+				)
 
 			# それぞれのルールでのsuspiciousを計算
 			for rule in @rules['rule']
 				rule.evaluate(codeLines)
-			
+
 			# (注) 一時的に各suspiciousが最大100であると仮定しているが、これは要修正
-			for line in CodeLine:
-				for sus in line.evaluations['suspicious']
-					line.totalSuspicious += sus
+			for line in CodeLine
+				for sus in line.evaluations
+					line.totalSuspicious += sus['suspicious'] 
 
 			return codeLines
 
@@ -52,13 +52,13 @@ module.exports =
 				for evaluation in codeLine.evaluations
 					switch evaluation.rule
 						when Rules.Midnight
-							rule = @rules[0]
+							rule = @rules[0]['rule']
 						when Rules.Unreliable
-							rule = @rules[1]
+							rule = @rules[1]['rule']
 						when Rules.EditHistory
 							console.error 'error'
 						when Rules.NotCommittedRule
-							rule = @rules[2]
+							rule = @rules[2]['rule']
 
 					reasons.push rule.evaluationReason(evaluation)
 
