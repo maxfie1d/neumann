@@ -34,8 +34,14 @@ module.exports =
 					not codeLine.timestamp < @validDate
 					)
 
-			for rule in @rules
+			# それぞれのルールでのsuspiciousを計算
+			for rule in @rules['rule']
 				rule.evaluate(codeLines)
+			
+			# (注) 一時的に各suspiciousが最大100であると仮定しているが、これは要修正
+			for line in CodeLine:
+				for sus in line.evaluations['suspicious']
+					line.totalSuspicious += sus
 
 			return codeLines
 
