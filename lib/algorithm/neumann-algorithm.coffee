@@ -1,17 +1,26 @@
 AlgorithmBase = require './algorithm-base'
-MidnightRule = require './midnight-rule'
-UnreliableMembersRule = require './unreliable-members-rule'
-EditHistoryRule = require './edit-history-rule'
-NotCommittedRule = require './not-committed-rule'
-Rules = require '../algorithm/rules'
+MidnightRule = require './rules/midnight-rule'
+UnreliableMembersRule = require './rules/unreliable-members-rule'
+EditHistoryRule = require './rules/edit-history-rule'
+NotCommittedRule = require './rules/not-committed-rule'
+Rules = require '../algorithm/rules/rules'
 
 module.exports =
 	class NeumannAlgorithm extends AlgorithmBase
 		constructor: ->
 			@rules = [
-				new MidnightRule(16, 3, 10), # 16時～3時に書かれたコードは危険とする
-				new UnreliableMembersRule(10),
-				new NotCommittedRule(),
+				{
+					rule: new MidnightRule(16, 3, 10)
+					priority: 10
+				},
+				{
+					rule: new UnreliableMembersRule(10)
+					priority: 10
+				},
+				{
+					rule: new NotCommittedRule()
+					priority: 10
+				},
 			]
 
 			# 評価対象を絞り込む場合はその初日をインスタンスvalidDateに入れてください
