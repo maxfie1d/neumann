@@ -70,7 +70,7 @@ module.exports =
 			.attr("height", height)
 
 			@scaleX = d3.scaleLinear()
-			.domain([0, d3.max(dataSet, (d) -> d.totalSuspicious())])
+			.domain([0, d3.max(dataSet, (d) -> d.totalSuspicious)])
 			.range([0, width])
 
 			@scaleY = d3.scaleBand()
@@ -79,7 +79,7 @@ module.exports =
 			.paddingInner(padding / bandwidth)
 
 			@scaleColor = d3.scaleSequential()
-			.domain([0, d3.max(dataSet, (d) -> d.totalSuspicious())])
+			.domain([0, d3.max(dataSet, (d) -> d.totalSuspicious)])
 			.interpolator((t) ->
 				return d3sc.interpolateGnBu(0.5 + t/2))
 

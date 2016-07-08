@@ -15,13 +15,8 @@ module.exports =
 
 			# 危険と判断したルールによる評価
 			@evaluations = []
+			# 算出した合計(計算はalgorithmで行うのでメソッドでなくフィールドとして定義)
+			@totalSuspicious = 0
 
 		toString: =>
 			@raw
-
-		totalSuspicious: ->
-			sum = 0
-			for evaluation in @evaluations
-				sum += evaluation.suspicious
-
-			return sum
