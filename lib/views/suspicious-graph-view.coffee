@@ -26,6 +26,9 @@ module.exports =
 
 		# DOMの表示が完了したら描画する
 		attached: ->
+			# グラフが描画済みなら何もしない
+			return if @svg?
+
 			if @editor?
 				FileHelper.getEvaluatedCodeLines(@editor.getPath())
 				.then (codeLines) =>
