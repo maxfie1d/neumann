@@ -7,7 +7,6 @@ module.exports =
 	# 夜に書かれたコードはやばいルール
 	class RuleBase
 		constructor: ->
-			@priority = 1
 
 		evaluate: (codeLines) ->
 			throw new Error("NotImplementedException")
