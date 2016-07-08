@@ -48,8 +48,7 @@ module.exports =
       @view.update(reasons)
 
     showOrHide: (item) ->
-      if item instanceof TextEditor
-        if item.id == @editor.id
-          @view.show()
-        else
-          @view.hide()
+      if item instanceof TextEditor and item.id == @editor.id
+        @view.show()
+      else
+        @view.hide()
