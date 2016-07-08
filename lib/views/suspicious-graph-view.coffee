@@ -3,7 +3,7 @@ d3 = require 'd3'
 d3sc = require 'd3-scale-chromatic'
 TextEditorHelper = require '../helpers/text-editor-helper'
 FileHelper = require '../helpers/file-helper'
-$ = require 'jQuery'
+$ = require 'jquery'
 
 module.exports =
 	class SuspiciousGraphView extends ScrollView
