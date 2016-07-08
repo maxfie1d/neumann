@@ -5,4 +5,6 @@ module.exports = Rules = {
   Unreliable: 1
   EditHistory: 2
   NotCommittedRule: 3
+
+  Random: 100
 }
