@@ -95,6 +95,7 @@ module.exports =
 			.attr("width", width)
 			.attr("height", barHeight)
 			.attr("opacity", 0)
+			.on("click", (d, i) => @jumpTo(d))
 			.transition()
 			.duration(duration / 2)
 			.delay((d,i) -> i * delay)
@@ -108,6 +109,7 @@ module.exports =
 			.attr("width", 0)
 			.attr("height", barHeight)
 			.attr("fill", @scaleColor(@scaleColor.domain()[0]))
+			.on("click", (d, i) => @jumpTo(d))
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
@@ -202,3 +204,14 @@ module.exports =
 				@scaleX(d.totalSuspicious()) - 5
 			else
 				10
+
+		jumpTo: (codeLine) ->
+			uri = @getURI()
+			pane = atom.workspace.paneForItem(@editor)
+			if pane?
+				# グラフに対応するTextEditorにフォーカスする
+				pane.activate()
+				pane.activateItem(@editor)
+
+				# カーソル位置を移動
+				@editor.setCursorBufferPosition([codeLine.line - 1, 0], autoscroll: true)
