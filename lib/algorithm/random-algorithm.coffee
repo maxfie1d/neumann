@@ -1,11 +1,17 @@
 AlgorithmBase = require './algorithm-base'
-RandomNumberGenerator = require '../models/random-number-generator'
+RandomRule = require './random-rule'
+Rules = require './rules'
 
 module.exports =
 	# 疑わしさをランダムで与えるアルゴリズムです
 	class RandomAlgorithm extends AlgorithmBase
+		constructor: ->
+			@rules = [
+				new RandomRule(),
+			]
+
 		evaluate: (codeLines) ->
-			for codeLine in codeLines
-				codeLine.suspicious = RandomNumberGenerator.generate()
+			for rule in @rules
+				rule.evaluate(codeLines)
 
 			return codeLines
