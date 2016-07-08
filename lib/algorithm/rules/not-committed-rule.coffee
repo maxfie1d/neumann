@@ -1,7 +1,7 @@
 RuleBase = require './rule-base'
 Rules = require './rules'
-Levels = require './levels'
-EvaluationReason = require './evaluation-reason'
+Levels = require '../levels'
+EvaluationReason = require '../evaluation-reason'
 
 NOT_COMMITTED_YET = "Not Committed Yet"
 

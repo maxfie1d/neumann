@@ -1,6 +1,6 @@
 AlgorithmBase = require './algorithm-base'
-RandomRule = require './random-rule'
-Rules = require './rules'
+RandomRule = require './rules/random-rule'
+Rules = require './rules/rules'
 
 module.exports =
 	# 疑わしさをランダムで与えるアルゴリズムです
