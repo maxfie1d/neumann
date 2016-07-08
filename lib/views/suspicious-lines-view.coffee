@@ -10,6 +10,10 @@ module.exports =
 			# 正規化のために疑わしさの最大値を求める
 			maxSuspicious =	Math.max.apply(null, (x.totalSuspicious() for x in codeLines))
 
+			# ゼロ除算を防ぐために
+			# すべてのコードが危険度0の場合はmaxSuspiciousを1にする
+			maxSuspicious = 1 if maxSuspicious == 0
+
 			for codeLine in codeLines
 				position = [codeLine.line - 1, 0]
 				marker = @editor.markBufferPosition(position)
