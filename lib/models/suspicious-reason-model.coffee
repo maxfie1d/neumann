@@ -1,5 +1,4 @@
 SuspiciousReasonView = require '../views/suspicious-reason-view'
-{TextEditor} = require 'atom'
 {CompositeDisposable} = require 'atom'
 
 module.exports =
@@ -48,7 +47,7 @@ module.exports =
 			@view.update(reasons)
 
 		showOrHide: (item) ->
-			if item instanceof TextEditor and item.id == @editor.id
+			if atom.workspace.isTextEditor(item) and item.id == @editor.id
 				@view.show()
 			else
 				@view.hide()
