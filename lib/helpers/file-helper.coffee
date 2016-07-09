@@ -10,8 +10,8 @@ module.exports = FileHelper =
 				array = output.split('\n')[...-1]
 				codeLines = []
 				for item in array
-					codeLine = new CodeLine(item)
-					codeLines.push(codeLine)
+					line = new CodeLine(item)
+					codeLines.push(line)
 
 				resolve(codeLines)
 			.catch (e) ->

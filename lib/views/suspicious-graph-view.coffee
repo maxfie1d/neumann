@@ -116,10 +116,10 @@ module.exports =
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
-			.attr("width", (d) => @scaleX(d.totalSuspicious()))
+			.attr("width", (d) => @scaleX(d.totalSuspicious))
 			.attrTween("fill", (d) =>
 				return (t) =>
-					@scaleColor(d.totalSuspicious() * t)
+					@scaleColor(d.totalSuspicious * t)
 					)
 
 			# 棒の右端の縦棒を描画
@@ -129,14 +129,14 @@ module.exports =
 			.attr("x", 0 - 3)
 			.attr("width", 3)
 			.attr("height", barHeight + barOverflow)
-			.attr("fill", (d) => @scaleColor(d.totalSuspicious()))
+			.attr("fill", (d) => @scaleColor(d.totalSuspicious))
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
-			.attr("x", (d) => @scaleX(d.totalSuspicious()) - 3)
+			.attr("x", (d) => @scaleX(d.totalSuspicious) - 3)
 			.attrTween("fill", (d) =>
 				return (t) =>
-					@scaleColor(d.totalSuspicious() * t)
+					@scaleColor(d.totalSuspicious * t)
 					)
 
 			# コードのラベルを描画
@@ -160,13 +160,13 @@ module.exports =
 			.attr("class", "suspicious")
 			.attr("x", 0 - 5)
 			.attr("y", barHeight + barOverflow - 1)
-			.text((d) -> d.totalSuspicious())
+			.text((d) -> d.totalSuspicious)
 			.transition()
 			.duration(duration)
 			.delay((d,i) -> i * delay)
 			.attr("x", @textSuspiciousAttrXCallback)
 			.tween("text", (d) ->
-				i = d3.interpolate(0, d.totalSuspicious())
+				i = d3.interpolate(0, d.totalSuspicious)
 				return (t) =>
 					this.textContent = Math.round(i(t))
 				)
@@ -189,12 +189,12 @@ module.exports =
 			# 棒を再描画
 			@bars
 			.selectAll("rect.bar-rect")
-			.attr("width", (d) => @scaleX(d.totalSuspicious()))
+			.attr("width", (d) => @scaleX(d.totalSuspicious))
 
 			# 棒の右端の縦棒を再描画
 			@bars
 			.selectAll("rect.vertical")
-			.attr("x", (d) => @scaleX(d.totalSuspicious()) - 3)
+			.attr("x", (d) => @scaleX(d.totalSuspicious) - 3)
 
 			# 疑わしさのラベルを再描画
 			@bars
@@ -203,8 +203,8 @@ module.exports =
 
 
 		textSuspiciousAttrXCallback: (d) =>
-			if @scaleX(d.totalSuspicious()) - 5 > 10
-				@scaleX(d.totalSuspicious()) - 5
+			if @scaleX(d.totalSuspicious) - 5 > 10
+				@scaleX(d.totalSuspicious) - 5
 			else
 				10
 

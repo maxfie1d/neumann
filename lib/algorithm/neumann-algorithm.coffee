@@ -35,11 +35,11 @@ module.exports =
 				)
 
 			# それぞれのルールでのsuspiciousを計算
-			for rule in @rules['rule']
-				rule.evaluate(codeLines)
+			for rule in @rules
+				rule['rule'].evaluate(codeLines)
 
 			# (注) 一時的に各suspiciousが最大100であると仮定しているが、これは要修正
-			for line in CodeLine
+			for line in codeLines
 				for sus in line.evaluations
 					line.totalSuspicious += sus['suspicious']
 
