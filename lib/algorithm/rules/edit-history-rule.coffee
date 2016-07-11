@@ -1,5 +1,7 @@
 RuleBase = require './rule-base'
 Rules = require './rules'
+Levels = require './levels'
+EvaluationReason = require './evaluation-reason'
 
 module.exports =
 	# 最近に書かれたコードはやばいルールです
@@ -28,19 +30,19 @@ module.exports =
 				percentage = (codeLine.timestamp.getTime() - minTime) / range		#比例で点数付け
 				console.log percentage
 				codeLine.evaluations.push {
-					rule: Rules.Edithistory
+					rule: Rules.EditHistory
 					suspicious: 10 * @priority * percentage
 					d: codeLine.timestamp
 				}
 
 		evaluationReason: (evaluation) ->
-			year  = d.getFullYear()		 	#	年（西暦）
-			month = d.getMonth()				#	月
-			date  = d.getDate()					#	日
-			hour  = d.getHours()				#	時
-			min   = d.getMinutes()			#	分
-			sec   = d.getSeconds()			#	秒
-			ms    = d.getMilliseconds()	#	ミリ秒（1000分の1秒）
+			year  = evaluation.d.getFullYear()		 	#	年（西暦）
+			month = evaluation.d.getMonth()+1				#	月
+			date  = evaluation.d.getDate()					#	日
+			hour  = evaluation.d.getHours()				#	時
+			min   = evaluation.d.getMinutes()			#	分
+			sec   = evaluation.d.getSeconds()			#	秒
+			ms    = evaluation.d.getMilliseconds()	#	ミリ秒（1000分の1秒）
 
 			str  = "#{year}年#{month}月#{date}日"
 			str += " #{hour}時#{min}分#{sec}秒"

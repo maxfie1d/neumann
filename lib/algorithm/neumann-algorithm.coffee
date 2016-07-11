@@ -21,6 +21,10 @@ module.exports =
 					rule: new NotCommittedRule()
 					priority: 10
 				},
+				{
+					rule: new EditHistoryRule()
+					priority: 10
+				},
 			]
 
 			# 評価対象を絞り込む場合はその初日をインスタンスvalidDateに入れてください
@@ -56,7 +60,7 @@ module.exports =
 						when Rules.Unreliable
 							rule = @rules[1]['rule']
 						when Rules.EditHistory
-							console.error 'error'
+							rule = @rules[3]['rule']
 						when Rules.NotCommittedRule
 							rule = @rules[2]['rule']
 
