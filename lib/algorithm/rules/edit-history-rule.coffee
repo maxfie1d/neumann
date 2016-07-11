@@ -14,7 +14,7 @@ module.exports =
 			maxTime = 0	#NewestTime　最大値	X2
 			todayTime = new Date
 			minTime = todayTime.getTime()	#OldestTime 	最小値	X1
-			console.log todayTime.getTime()
+
 			for codeLine in codeLines
 				if maxTime < codeLine.timestamp.getTime()
 					maxTime = codeLine.timestamp.getTime()
@@ -28,7 +28,7 @@ module.exports =
 			#変更履歴で点数付け
 			for codeLine in codeLines
 				percentage = (codeLine.timestamp.getTime() - minTime) / range		#比例で点数付け
-				console.log percentage
+				
 				codeLine.evaluations.push {
 					rule: Rules.EditHistory
 					suspicious: 10 * @priority * percentage
