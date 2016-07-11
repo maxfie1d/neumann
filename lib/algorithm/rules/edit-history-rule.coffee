@@ -27,8 +27,11 @@ module.exports =
 
 			#変更履歴で点数付け
 			for codeLine in codeLines
-				percentage = (codeLine.timestamp.getTime() - minTime) / range		#比例で点数付け
-				
+				if range != 0
+					percentage = (codeLine.timestamp.getTime() - minTime) / range		#比例で点数付け
+				else
+					percentage = 1.0
+
 				codeLine.evaluations.push {
 					rule: Rules.EditHistory
 					suspicious: 10 * @priority * percentage
