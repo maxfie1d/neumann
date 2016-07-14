@@ -28,7 +28,39 @@ module.exports =
 			#変更履歴で点数付け
 			for codeLine in codeLines
 				if range != 0
-					percentage = (codeLine.timestamp.getTime() - minTime) / range		#比例で点数付け
+					timeMsecond = maxTime - codeLine.timestamp.getTime()
+					timeHour = timeMsecond / 1000000 / 3600
+					timeDay = timeHour / 24
+					timeWeek = timeDay / 7
+					timeMonth = timeDay / 30
+
+					#24時間以内であれば90点以上
+					if timeHour <= 24
+						value = (24 - timeHour) / 24 * 10 + 90
+
+					#3日以内であれば80点以上
+					else if timeDay <= 3
+						value = (3 - timeDay) / 3 * 10 + 80
+
+					#7日以内であれば60点以上
+					else if timeDay <= 7
+						value = (7 - timeDay) / 4 * 20 + 60
+
+					#4週間以内であれば50点以上
+					else if timeWeek <= 4
+						value = (4 - timeWeek) / 4 * 10 + 50
+
+					#約1年以内であれば30点以上
+					else if timeMonth <= 12
+						value = (12 - timeMonth) / 12 * 20 + 30
+
+					else
+						timeYear = timeMonth / 12
+						mintimeYear = minTime / 1000000 / 3600 / 24 / 7 / 30 / 12
+						value = ((mintimeYear - timeYear) / (mintimeYear - 1)) * 30
+
+					percentage = value / 100
+
 				else
 					percentage = 1.0
 
@@ -52,3 +84,6 @@ module.exports =
 
 			reason = "#{str}に書かれたコードです"
 			return new EvaluationReason(Levels.warning, reason)
+
+		evaluationValue: () ->
+			return 1
