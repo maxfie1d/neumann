@@ -22,7 +22,7 @@
 				},
 				{
 					'label': 'Edit option'
-					'command': 'neumann:option'
+					'command': 'neumann:option-editor'
 				}
 			]
 		]
