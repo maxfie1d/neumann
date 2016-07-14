@@ -4,6 +4,7 @@ SuspiciousLinesModel = require './models/suspicios-lines-model'
 SuspiciousGraphModel = require './models/suspicious-graph-model'
 SuspiciousGraphView = require './views/suspicious-graph-view'
 SuspiciousReasonModel = require './models/suspicious-reason-model'
+OptionView = require './models/option-model'
 
 module.exports = Neumann =
 	# ここにパッケージの設定を書く
@@ -41,6 +42,9 @@ module.exports = Neumann =
 
 		suspiciousGraphModel = new SuspiciousGraphModel()
 		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:suspicious-graph': -> suspiciousGraphModel.toggle()
+
+		#optionViewModel = new OptionView()
+		#@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:option': -> optionViewModel.toggle()
 
 		# 各TextEditorに対してSuspiciousLineViewを作る
 		atom.workspace.observeTextEditors (editor) ->

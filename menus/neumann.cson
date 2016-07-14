@@ -19,6 +19,10 @@
 				{
 					'label': 'Show suspicious graph'
 					'command': 'neumann:suspicious-graph'
+				},
+				{
+					'label': 'Edit option'
+					'command': 'neumann:option'
 				}
 			]
 		]
