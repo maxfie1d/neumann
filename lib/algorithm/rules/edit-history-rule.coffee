@@ -27,42 +27,10 @@ module.exports =
 
 			#変更履歴で点数付け
 			for codeLine in codeLines
-				if range != 0
-					timeMillSecond = maxTime - codeLine.timestamp.getTime()
-					timeHour = timeMillSecond / 1000 / 3600
-					timeDay = timeHour / 24
-					timeWeek = timeDay / 7
-					timeMonth = timeDay / 30
-
-					#24時間以内であれば90点以上
-					if timeHour <= 24
-						value = (24 - timeHour) / 24 * 10 + 90
-
-					#3日以内であれば80点以上
-					else if timeDay <= 3
-						value = (3 - timeDay) / 3 * 10 + 80
-
-					#7日以内であれば60点以上
-					else if timeDay <= 7
-						value = (7 - timeDay) / 4 * 20 + 60
-
-					#4週間以内であれば50点以上
-					else if timeWeek <= 4
-						value = (4 - timeWeek) / 4 * 10 + 50
-
-					#約1年以内であれば30点以上
-					else if timeMonth <= 12
-						value = (12 - timeMonth) / 12 * 20 + 30
-
+					if range == 0
+						percentage = 1.0
 					else
-						timeYear = timeMonth / 12
-						minTimeYear = minTime / 1000 / 3600 / 24 / 7 / 30 / 12
-						value = ((minTimeYear - timeYear) / (minTimeYear - 1)) * 30
-
-					percentage = value / 100
-
-				else
-					percentage = 1.0
+						percentage = @evaluationValue(codeLine,maxTime,minTime,range)
 
 				codeLine.evaluations.push {
 					rule: Rules.EditHistory
@@ -84,3 +52,49 @@ module.exports =
 
 			reason = "#{str}に書かれたコードです"
 			return new EvaluationReason(Levels.warning, reason)
+
+
+		evaluationValue: (codeLine,maxTime,minTime,range) ->
+
+			rangeDay = range / 1000 / 3600 / 24
+			timeMilliSecond = maxTime - codeLine.timestamp.getTime()
+			timeHour = timeMilliSecond / 1000 / 3600
+			timeDay = timeHour / 24
+			timeWeek = timeDay / 7
+			timeMonth = timeDay / 30
+
+			#開発期間の短いファイルに対しては時期に比例して配点する
+			if rangeDay <= 180
+				value = timeMilliSecond / range
+				console.log value
+				return value
+
+			#開発期間が1年以上のものに対しては時期に応じて以下の配点を行う。
+			#24時間以内であれば90点以上
+			if timeHour <= 24
+				value = (24 - timeHour) / 24 * 10 + 90
+
+			#3日以内であれば80点以上
+			else if timeDay <= 3
+				value = (3 - timeDay) / 3 * 10 + 80
+
+			#7日以内であれば60点以上
+			else if timeDay <= 7
+				value = (7 - timeDay) / 4 * 20 + 60
+
+			#4週間以内であれば50点以上
+			else if timeWeek <= 4
+				value = (4 - timeWeek) / 4 * 10 + 50
+
+			#約1年以内であれば30点以上
+			else if timeMonth <= 12
+				value = (12 - timeMonth) / 12 * 20 + 30
+
+			else
+				timeYear = timeMonth / 12
+				minTimeYear = minTime / 1000 / 3600 / 24 / 7 / 30 / 12
+				value = ((minTimeYear - timeYear) / (minTimeYear - 1)) * 30
+
+			console.log value
+
+			rerutn value / 100
