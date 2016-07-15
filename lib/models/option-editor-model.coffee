@@ -1,8 +1,25 @@
 OptionEditorView = require  '../views/option-editor-view'
 
-module.export =
+module.exports =
 	class OptionEditorModel
+		panel: null
+
 		constructor: ->
+			@view = new OptionEditorView
 
 		toggle: ->
-			console.log "option editor toggle!"
+			if @isOptionEditorVisible()
+				@hideOptionEditor()
+			else
+				@showOptionEditor()
+
+
+		isOptionEditorVisible: ->
+			return @panel? and @panel.isVisible()
+
+		showOptionEditor: ->
+			@panel ?= atom.workspace.addBottomPanel(item: @view)
+
+			@panel.show()
+		hideOptionEditor: ->
+			@panel.hide()
