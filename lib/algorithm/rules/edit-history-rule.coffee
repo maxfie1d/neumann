@@ -27,16 +27,17 @@ module.exports =
 
 			#変更履歴で点数付け
 			for codeLine in codeLines
-					if range == 0
-						percentage = 1.0
-					else
-						percentage = @evaluationValue(codeLine,maxTime,minTime,range)
+				if range != 0
+					percentage = @evaluationValue(codeLine,maxTime,minTime,range)
+				else
+					percentage = 1.0
 
 				codeLine.evaluations.push {
 					rule: Rules.EditHistory
 					suspicious: 10 * @priority * percentage
 					d: codeLine.timestamp
 				}
+
 
 		evaluationReason: (evaluation) ->
 			year  = evaluation.d.getFullYear()		 	#	年（西暦）
