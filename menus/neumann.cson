@@ -17,8 +17,8 @@
 					'command': 'neumann:git-blame'
 				},
 				{
-					'label': 'Show suspicious graph'
-					'command': 'neumann:suspicious-graph'
+					'label': 'Show suspiciousness graph'
+					'command': 'neumann:suspiciousness-graph'
 				}
 			]
 		]

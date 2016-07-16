@@ -6,11 +6,11 @@ FileHelper = require '../helpers/file-helper'
 $ = require 'jquery'
 
 module.exports =
-	class SuspiciousGraphView extends ScrollView
+	class SuspiciousnessGraphView extends ScrollView
 		@content: ->
-			@div class: 'suspicious-graph', =>
+			@div class: 'suspiciousness-graph', =>
 				@div outlet: 'container', =>
-					@h1 'Suspicious Graph'
+					@h1 'Suspiciousness Graph'
 
 		constructor: ({@editorId})->
 			super
@@ -18,11 +18,11 @@ module.exports =
 
 		# タブに表示されるタイトル
 		getTitle: ->
-			'suspicious-graph'
+			'suspiciousness-graph'
 
 		# [必須]atom.workspace.paneForURIメソッドを使用するため
 		getURI: ->
-			"neumann://suspicious-graph/#{@editorId}"
+			"neumann://suspiciousness-graph/#{@editorId}"
 
 		# DOMの表示が完了したら描画する
 		attached: ->
@@ -32,7 +32,7 @@ module.exports =
 			if @editor?
 				FileHelper.getEvaluatedCodeLines(@editor.getPath())
 				.then (codeLines) =>
-					@renderSuspiciousGraph(codeLines)
+					@renderSuspiciousnessGraph(codeLines)
 					$(window).resize =>
 						@update()
 
@@ -44,7 +44,7 @@ module.exports =
 					graphPane.destroyItem(graphPane.itemForURI(uri))
 
 
-		renderSuspiciousGraph: (codeLines) ->
+		renderSuspiciousnessGraph: (codeLines) ->
 			dataSet = codeLines
 
 			# アニメーションの長さ

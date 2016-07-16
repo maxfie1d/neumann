@@ -1,9 +1,9 @@
 {CompositeDisposable} = require 'atom'
 GitBlame = require './models/git-blame'
-SuspiciousLinesModel = require './models/suspicios-lines-model'
-SuspiciousGraphModel = require './models/suspicious-graph-model'
-SuspiciousGraphView = require './views/suspicious-graph-view'
-SuspiciousReasonModel = require './models/suspicious-reason-model'
+SuspiciousLinesModel = require './models/suspicious-lines-model'
+SuspiciousnessGraphModel = require './models/suspiciousness-graph-model'
+SuspiciousnessGraphView = require './views/suspiciousness-graph-view'
+SuspiciousnessReasonModel = require './models/suspiciousness-reason-model'
 
 module.exports = Neumann =
 	# ここにパッケージの設定を書く
@@ -39,13 +39,13 @@ module.exports = Neumann =
 		# Register command that toggles this view
 		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:git-blame': -> GitBlame()
 
-		suspiciousGraphModel = new SuspiciousGraphModel()
-		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:suspicious-graph': -> suspiciousGraphModel.toggle()
+		suspiciousnessGraphModel = new SuspiciousnessGraphModel()
+		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:suspiciousness-graph': -> suspiciousnessGraphModel.toggle()
 
 		# 各TextEditorに対してSuspiciousLineViewを作る
 		atom.workspace.observeTextEditors (editor) ->
 			model = new SuspiciousLinesModel(editor)
-			new SuspiciousReasonModel(model)
+			new SuspiciousnessReasonModel(model)
 
 		# グラフのカスタムオープナーを定義
 		atom.workspace.addOpener (uri) ->
@@ -62,7 +62,7 @@ module.exports = Neumann =
 			catch error
 				return
 
-			return new SuspiciousGraphView(editorId: path.substring(1))
+			return new SuspiciousnessGraphView(editorId: path.substring(1))
 
 
 	deactivate: ->

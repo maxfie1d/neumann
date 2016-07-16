@@ -1,12 +1,12 @@
-SuspiciousGraphView = require '../views/suspicious-graph-view'
+SuspiciousnessGraphView = require '../views/suspiciousness-graph-view'
 
 module.exports =
-	class suspiciousGraphModel
+	class SuspiciousnessGraphModel
 		constructor: ->
 
 		toggle: ->
 			# すでにグラフ画面がアクティブなら閉じる
-			if atom.workspace.getActivePaneItem() instanceof SuspiciousGraphView
+			if atom.workspace.getActivePaneItem() instanceof SuspiciousnessGraphView
 				atom.workspace.destroyActivePaneItem()
 				return
 
@@ -21,7 +21,7 @@ module.exports =
 				@addGraph(editor)
 
 		graphUri: (editor) ->
-			"neumann://suspicious-graph/#{editor.id}"
+			"neumann://suspiciousness-graph/#{editor.id}"
 
 		graphForEditorExists: (editor) ->
 			uri = @graphUri(editor)
@@ -34,7 +34,7 @@ module.exports =
 			# グラフを右側に開く
 			atom.workspace.open(uri, {split: 'right', searchAllPanes: true}).then (view) ->
 				# グラフを開いたらフォーカスを元に戻す
-				if view instanceof SuspiciousGraphView
+				if view instanceof SuspiciousnessGraphView
 					activePane.activate()
 
 		removeGraph: (editor) ->

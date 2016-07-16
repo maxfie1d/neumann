@@ -1,8 +1,8 @@
-SuspiciousReasonView = require '../views/suspicious-reason-view'
+SuspiciousReasonView = require '../views/suspiciousness-reason-view'
 {CompositeDisposable} = require 'atom'
 
 module.exports =
-	class SuspiciousReasonModel
+	class SuspiciousnessReasonModel
 		constructor: (model) ->
 			model.onSuspiciousLinesAttach ({editor: @editor, codeLines: @codeLines, algorithm: @algorithm}) => @create()
 			model.onSuspiciousLinesDetach (editor) => @destroy(editor)
@@ -33,7 +33,7 @@ module.exports =
 
 		updateReason: (line) ->
 			codeLine = x for x in @codeLines when x.line == line
-			@view ?= new SuspiciousReasonView
+			@view ?= new SuspiciousnessReasonView
 			reasons = @algorithm.evaluationReason(codeLine)
 
 			# 危険度の小さい順に並び替え

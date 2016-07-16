@@ -4,9 +4,9 @@
 Levels = require '../algorithm/levels'
 
 module.exports =
-	class SuspiciousReasonView extends View
+	class SuspiciousnessReasonView extends View
 		@content: ->
-			@div class: 'suspicious-reason', =>
+			@div class: 'suspiciousness-reason', =>
 				@div class: 'container', =>
 					@ul class: 'reason-list', outlet: 'reasonList', =>
 

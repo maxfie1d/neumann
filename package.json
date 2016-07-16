@@ -8,7 +8,7 @@
 		"atom-workspace": [
 			"neumann:git-blame",
 			"neumann:suspicious-lines",
-			"neumann:suspicious-graph"
+			"neumann:suspiciousness-graph"
 		]
 	},
 	"repository": "https://github.com/MaxfieldWalker/neumann",
