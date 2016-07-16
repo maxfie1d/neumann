@@ -1,12 +1,12 @@
 RuleBase = require './rule-base'
 Rules = require './rules'
-Levels = require './levels'
-EvaluationReason = require './evaluation-reason'
+Levels = require '../levels'
+EvaluationReason = require '../evaluation-reason'
 
 module.exports =
 	# このメンバーはやばいルール
 	class UnreliableMembersRule extends RuleBase
-		constructor: (@priority=1) ->
+		constructor: ->
 
 		evaluate: (codeLines) ->
 			for codeLine in codeLines
@@ -17,7 +17,7 @@ module.exports =
 				if (index = unreliableMembers.indexOf(codeLine.author)) >= 0
 					codeLine.evaluations.push {
 						rule: Rules.Unreliable
-						suspicious: 10 * @priority
+						suspicious: 100
 						args: [unreliableMembers[index]]
 					}
 

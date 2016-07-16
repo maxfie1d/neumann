@@ -1,14 +1,14 @@
 RuleBase = require './rule-base'
 Rules = require './rules'
-Levels = require './levels'
-EvaluationReason = require './evaluation-reason'
+Levels = require '../levels'
+EvaluationReason = require '../evaluation-reason'
 
 NOT_COMMITTED_YET = "Not Committed Yet"
 
 module.exports =
 	# 未コミットのコードはやばいルールです
 	class NotCommittedRule extends RuleBase
-		constructor: (@priority=1) ->
+		constructor: ->
 
 		evaluate: (codeLines) ->
 			for codeLine in codeLines
@@ -16,7 +16,7 @@ module.exports =
 				if codeLine.author is NOT_COMMITTED_YET
 					codeLine.evaluations.push {
 						rule: Rules.NotCommittedRule
-						suspicious: 0 * @priority
+						suspicious: 100
 					}
 
 		evaluationReason: (evaluation) ->

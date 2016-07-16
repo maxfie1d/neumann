@@ -1,12 +1,12 @@
 RuleBase = require './rule-base'
 Rules = require './rules'
-Levels = require './levels'
-EvaluationReason = require './evaluation-reason'
+Levels = require '../levels'
+EvaluationReason = require '../evaluation-reason'
 
 module.exports =
 	# 夜に書かれたコードはやばいルールです
 	class MidnightRule extends RuleBase
-		constructor: (@start, @end, @priority=1) ->
+		constructor: (@start, @end) ->
 
 		evaluate: (codeLines) ->
 			for codeLine in codeLines
@@ -17,7 +17,7 @@ module.exports =
 					# MidnightRuleで危険と判定されたことを記録します
 					codeLine.evaluations.push {
 						rule: Rules.Midnight
-						suspicious: 10 * @priority
+						suspicious: 100
 					}
 
 		evaluationReason: (evaluation) ->

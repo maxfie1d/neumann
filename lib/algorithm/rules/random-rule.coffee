@@ -1,12 +1,12 @@
 RuleBase = require './rule-base'
-RandomNumberGenerator = require '../models/random-number-generator'
+RandomNumberGenerator = require '../../models/random-number-generator'
 Rules = require './rules'
-Levels = require './levels'
-EvaluationReason = require './evaluation-reason'
+Levels = require '../levels'
+EvaluationReason = require '../evaluation-reason'
 
 module.exports =
 	class RandomRule extends RuleBase
-		constructor: (@priority=1) ->
+		constructor: ->
 
 		evaluate: (codeLines) ->
 			for codeLine in codeLines

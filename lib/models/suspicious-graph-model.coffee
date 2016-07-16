@@ -32,7 +32,7 @@ module.exports =
 			uri = @graphUri(editor)
 			activePane = atom.workspace.getActivePane()
 			# グラフを右側に開く
-			atom.workspace.open(uri, {split: 'right', searchAllPanes: true}).done (view) ->
+			atom.workspace.open(uri, {split: 'right', searchAllPanes: true}).then (view) ->
 				# グラフを開いたらフォーカスを元に戻す
 				if view instanceof SuspiciousGraphView
 					activePane.activate()
