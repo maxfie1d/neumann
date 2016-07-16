@@ -6,7 +6,6 @@
 	"keywords": [],
 	"activationCommands": {
 		"atom-workspace": [
-			"neumann:git-blame",
 			"neumann:suspicious-lines",
 			"neumann:suspiciousness-graph"
 		]

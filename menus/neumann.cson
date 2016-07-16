@@ -13,10 +13,6 @@
 			'label': 'neumann'
 			'submenu': [
 				{
-					'label': 'git blame'
-					'command': 'neumann:git-blame'
-				},
-				{
 					'label': 'Show suspiciousness graph'
 					'command': 'neumann:suspiciousness-graph'
 				}

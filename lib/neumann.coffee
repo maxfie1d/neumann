@@ -1,5 +1,4 @@
 {CompositeDisposable} = require 'atom'
-GitBlame = require './models/git-blame'
 SuspiciousLinesModel = require './models/suspicious-lines-model'
 SuspiciousnessGraphModel = require './models/suspiciousness-graph-model'
 SuspiciousnessGraphView = require './views/suspiciousness-graph-view'
