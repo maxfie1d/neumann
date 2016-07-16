@@ -9,11 +9,11 @@ module.exports =
 				@h1 'Option Editor'
 
 				# 危険な時間指定
-				@form =>
+				@form id: 'SetTime', =>
 					@label "Time:"
-					@input type: "time", step: "3600"
+					@input type: "time", step: "3600", id: 'startTime'
 					@text("~")
-					@input type: "time", step: "3600"
+					@input type: "time", step: "3600", id: 'endTime'
 
 			#それぞれの人の危険度指定
 #		 for i in x.author
@@ -33,27 +33,30 @@ module.exports =
 				@h3 'priority'
 
 				@table =>
-						@form =>
+						@form id: 'time', =>
 							@tr =>
 								@td =>
 									@label "Time:"
 							@tr =>
 							@td =>
-								@input type: "range", min: "0", max: "100"
-						@form =>
+								@input type: "range", min: "0", max: "100", id: 'timePriority'
+						@form id: 'member', =>
 							@tr =>
 								@td =>
 									@label "Member:"
 							@tr =>
 								@td =>
-									@input type: "range", min: "0", max: "100"
-						@form =>
+									@input type: "range", min: "0", max: "100", id: 'membrPriority'
+						@form id: 'nummod', =>
 							@tr =>
 								@td =>
 									@label "NumMod:"
 							@tr =>
 								@td =>
-									@input type: "range", min: "0", max: "100"
+									@input type: "range", min: "0", max: "100", id: 'NummodPriority'
 
 				@form =>
-					@input type: "button", value: "Application"
+					@input type: "button", value: "Application", id: 'appButton', click: 'hoge', "foo"
+
+		hoge: (hage) ->
+			console.log "#{hage}"
