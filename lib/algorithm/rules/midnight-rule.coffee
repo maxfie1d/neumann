@@ -11,7 +11,7 @@ module.exports =
 		evaluate: (codeLines) ->
 			for codeLine in codeLines
 				hours = codeLine.timestamp.getHours()
-				# @startから@endまでに書かれたコードなら危険と判定する
+				# (@start)時から(@end)時までに書かれたコードなら危険と判定する
 				if hours >= @start || hours <= @end
 
 					# MidnightRuleで危険と判定されたことを記録します

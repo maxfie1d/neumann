@@ -3,6 +3,7 @@ Rules = require './rules'
 Levels = require '../levels'
 EvaluationReason = require '../evaluation-reason'
 
+# 未コミットの場合のコミット者名
 NOT_COMMITTED_YET = "Not Committed Yet"
 
 module.exports =

@@ -1,6 +1,8 @@
 module.exports =
 	# ルールの基底クラスです
-	# 必ずevaluateメソッドをオーバーライドしてください
+	# 必ず以下のメソッドをオーバーライドしてください
+	# evaluate(codeLines)
+	# evaluationReason(codeLine)
 	#
 	# ルール例:
 	# やばい人ルール

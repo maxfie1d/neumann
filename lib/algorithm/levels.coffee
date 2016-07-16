@@ -1,8 +1,8 @@
 # 警告レベルのenumです
 
 module.exports = Levels = {
-	info: 0
-	warning: 1
-	error: 2
-	critical: 3
+	info: 0 # やばくはない
+	warning: 1 # やばいかも
+	error: 2 # やばい
+	critical: 3 # 最悪にやばい
 }

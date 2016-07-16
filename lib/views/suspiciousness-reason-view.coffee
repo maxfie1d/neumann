@@ -11,9 +11,10 @@ module.exports =
 					@ul class: 'reason-list', outlet: 'reasonList', =>
 
 		constructor: ->
-			super
+			super # 必須
 
 		update: (reasons)->
+			# 下側にパネルを追加
 			@panel ?= atom.workspace.addBottomPanel(item: this)
 
 			# 前のアイテムを削除
@@ -23,7 +24,10 @@ module.exports =
 				@renderReason(reason)
 
 		renderReason: (reason) ->
+			# Object.keysでオブジェクトのもつプロパティ名の配列を取得しています
 			displayName = Object.keys(Levels)[reason.level]
+
+			# 理由のli要素を作成
 			reasonItem = $$$ ->
 				@li =>
 					@div class: 'flexbox', =>

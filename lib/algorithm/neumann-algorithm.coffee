@@ -8,6 +8,7 @@ Rules = require '../algorithm/rules/rules'
 module.exports =
 	class NeumannAlgorithm extends AlgorithmBase
 		constructor: ->
+			# ノイマンアルゴリズムはこれらのルールによって危険度を評価します
 			@rules = [
 				{
 					rule: new MidnightRule(16, 3)

@@ -31,8 +31,8 @@ module.exports = Neumann =
 
 	subscriptions: null
 
+	# neumann起動時にこのメソッドが呼ばれます
 	activate: (state) ->
-		# Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
 		@subscriptions = new CompositeDisposable
 
 		# Register command that toggles this view
@@ -41,21 +41,24 @@ module.exports = Neumann =
 		suspiciousnessGraphModel = new SuspiciousnessGraphModel()
 		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:suspiciousness-graph': -> suspiciousnessGraphModel.toggle()
 
-		# 各TextEditorに対してSuspiciousLineViewを作る
+		# 各TextEditorに対してModelを作る
 		atom.workspace.observeTextEditors (editor) ->
 			model = new SuspiciousLinesModel(editor)
 			new SuspiciousnessReasonModel(model)
 
-		# グラフのカスタムオープナーを定義
+		# Suspiciousness Graphのカスタムオープナーを定義
 		atom.workspace.addOpener (uri) ->
+			# uriを処理
 			try
 				url = require 'url'
 				{protocol, host, path} = url.parse(uri)
 			catch error
 				return
 
+			# プロトコルがneumann:でなければ何もしない
 			return unless protocol is 'neumann:'
 
+			# pathを処理
 			try
 				path = decodeURI(path)
 			catch error

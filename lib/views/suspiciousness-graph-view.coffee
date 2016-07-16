@@ -13,7 +13,7 @@ module.exports =
 					@h1 'Suspiciousness Graph'
 
 		constructor: ({@editorId})->
-			super
+			super # 必須
 			@editor = TextEditorHelper.getEditorForId(@editorId)
 
 		# タブに表示されるタイトル
@@ -60,7 +60,9 @@ module.exports =
 			# ひとつのバーで使う領域
 			bandwidth = barHeight + barOverflow + padding
 
+			# グラフの全体の横幅
 			width = @width() - 20
+			# グラフ全体の縦幅
 			height = bandwidth * dataSet.length - padding
 
 			# svg要素を追加
@@ -171,7 +173,9 @@ module.exports =
 					this.textContent = Math.round(i(t))
 				)
 
+		# グラフを再描画します
 		update: ->
+			# グラフ全体の横幅
 			width = @width() - 20
 
 			# svgのサイズを更新
@@ -208,6 +212,7 @@ module.exports =
 			else
 				10
 
+		# codeLineに該当する行の先頭へカーソルを移動します
 		jumpTo: (codeLine) ->
 			uri = @getURI()
 			pane = atom.workspace.paneForItem(@editor)

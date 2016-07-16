@@ -6,6 +6,7 @@
 			'command': 'neumann:toggle'
 		}
 	]
+# Packagesメニューのneumannのメニューを定義します
 'menu': [
 	{
 		'label': 'Packages'

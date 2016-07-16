@@ -12,7 +12,7 @@ module.exports =
 			for codeLine in codeLines
 				codeLine.evaluations.push {
 						rule: Rules.Random
-						suspicious: RandomNumberGenerator.generate()
+						suspicious: RandomNumberGenerator.generate() # ランダムに危険度を与えます
 					}
 
 		evaluationReason: (evaluation) ->

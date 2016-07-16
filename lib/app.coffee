@@ -7,6 +7,7 @@ module.exports =
 	class App
 		instance = null
 
+		# 唯一のインスタンスを返します
 		@instance: ->
 			instance ?= new PrivateApp
 
@@ -21,9 +22,10 @@ module.exports =
 				algorithm = atom.config.get('neumann.algorithm')
 				@updateAlgorithm(algorithm)
 
-				# アルゴリズムが変更されたら使用中のアルゴリズムを更新
+				# アルゴリズムが変更されたら使用するアルゴリズムを更新
 				@subscriptions.add atom.config.observe 'neumann.algorithm', (newValue) => @updateAlgorithm(newValue)
 
+			# 使用するアルゴリズムを更新します
 			updateAlgorithm: (newAlgorithm) ->
 				switch newAlgorithm
 					when "Neumann Algorithm"

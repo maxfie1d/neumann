@@ -4,9 +4,11 @@ SuspiciousReasonView = require '../views/suspiciousness-reason-view'
 module.exports =
 	class SuspiciousnessReasonModel
 		constructor: (model) ->
+			# イベントを購読
 			model.onSuspiciousLinesAttach ({editor: @editor, codeLines: @codeLines, algorithm: @algorithm}) => @create()
 			model.onSuspiciousLinesDetach (editor) => @destroy(editor)
 
+		# Viewを作ります
 		create: ->
 			# 前のハンドラーとViewを始末する
 			@destroy()
@@ -26,11 +28,13 @@ module.exports =
 
 			@subscriptions.add atom.workspace.onDidChangeActivePaneItem (item) => @showOrHide item
 
+		# Viewを削除し，disposablesを始末します
 		destroy: (editor) ->
 			@subscriptions?.dispose()
 			@view?.destroy()
 			@view = null
 
+		# 理由表示を更新します
 		updateReason: (line) ->
 			codeLine = x for x in @codeLines when x.line == line
 			@view ?= new SuspiciousnessReasonView
@@ -46,6 +50,8 @@ module.exports =
 
 			@view.update(reasons)
 
+		# アクティブなアイテムがTextEditorかつEditorIdが一致すればViewを表示し，
+		# そうでなければViewを隠します
 		showOrHide: (item) ->
 			if atom.workspace.isTextEditor(item) and item.id == @editor.id
 				@view.show()

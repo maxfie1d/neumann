@@ -10,6 +10,7 @@ getRepository = (path) ->
 			atom.notifications.addError(e)
 			reject(e)
 
+# pathに対するリポジトリを返します
 getRepositoryForFile = (path) ->
 	new Promise (resolve, reject) ->
 		project = atom.project
@@ -32,12 +33,13 @@ module.exports = git =
 		new Promise (resolve, reject) ->
 			output = ''
 			try
+				# 外部コマンド(git)を実行
 				new BufferedProcess
-					command: atom.config.get('neumann.gitPath') ? 'git'
-					args: args
-					options: options
-					stdout: (data) -> output += data.toString()
-					stderr: (data) -> output += data.toString()
+					command: atom.config.get('neumann.gitPath') ? 'git' # コマンド
+					args: args                                          # 引数
+					options: options                                    # オプション
+					stdout: (data) -> output += data.toString()         # 標準出力
+					stderr: (data) -> output += data.toString()         # 標準エラー
 					exit: (code) ->
 						if code is 0
 							resolve output
@@ -48,10 +50,11 @@ module.exports = git =
 				atom.notifications.addError('git is not available, or not on the PATH')
 				reject 'Could not find git'
 
+	# git blame <file>
 	blame: (path)->
 		if not path?
 			path = atom.workspace.getActiveTextEditor()?.getPath()
-			
+
 		getRepository(path)
 		.then (repo) ->
 			# GitRepository.relativize()を使うとrealpathが返されるようなので

@@ -8,6 +8,7 @@ module.exports =
 	class SuspiciousLinesModel
 		constructor: (@editor) ->
 			@subscriptions = new CompositeDisposable
+			# イベントの発火などに使用します
 			@emitter = new Emitter
 
 			# コマンドを登録
@@ -36,6 +37,7 @@ module.exports =
 				# イベントを発火
 				@emitter.emit 'suspicious-lines-attach', editor: @editor, codeLines: codeLines, algorithm: App.instance().algorithm
 
+				# Editorで何か編集されたら行の色付けを消す
 				@handler = @editor.onDidStopChanging =>
 					@destroy()
 					@emitter.emit 'suspicious-lines-detach', @editor
@@ -49,6 +51,7 @@ module.exports =
 		onSuspiciousLinesDetach: (callback) ->
 			@emitter.on 'suspicious-lines-detach', callback
 
+		# 行の色付けを削除してハンドラーを始末する
 		destroy: ->
 			@view.destroy()
 			@handler?.dispose()

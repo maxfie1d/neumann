@@ -10,6 +10,7 @@ module.exports =
 				atom.workspace.destroyActivePaneItem()
 				return
 
+			# アクティブなEditorが存在しなければ何もしない
 			editor = atom.workspace.getActiveTextEditor()
 			return unless editor?
 
@@ -20,14 +21,17 @@ module.exports =
 			else
 				@addGraph(editor)
 
+		# グラフのURIを返します
 		graphUri: (editor) ->
 			"neumann://suspiciousness-graph/#{editor.id}"
 
+		# editorに対するグラフがすでにあるかどうかを返します
 		graphForEditorExists: (editor) ->
 			uri = @graphUri(editor)
 			graphPane = atom.workspace.paneForURI(uri)
 			return graphPane?
 
+		# editorに対するグラフを追加します
 		addGraph: (editor) ->
 			uri = @graphUri(editor)
 			activePane = atom.workspace.getActivePane()
@@ -37,6 +41,7 @@ module.exports =
 				if view instanceof SuspiciousnessGraphView
 					activePane.activate()
 
+		# editorに対するグラフを削除します
 		removeGraph: (editor) ->
 			uri = @graphUri(editor)
 			graphPane = atom.workspace.paneForURI(uri)
