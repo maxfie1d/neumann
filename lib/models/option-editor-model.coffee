@@ -18,7 +18,7 @@ module.exports =
 			return @panel? and @panel.isVisible()
 
 		showOptionEditor: ->
-			@panel ?= atom.workspace.addBottomPanel(item: @view)
+			@panel ?= atom.workspace.addRightPanel(item: @view)
 
 			@panel.show()
 		hideOptionEditor: ->

@@ -10,7 +10,7 @@ module.exports = ->
 		for item in array
 			codeLine = new CodeLine(item)
 			codeLines.push(codeLine)
-			
+
 		new GitBlameView(codeLines)
 	.catch (e) ->
 		console.log e
