@@ -1,4 +1,4 @@
-SuspiciousReasonView = require '../views/suspiciousness-reason-view'
+SuspiciousnessReasonView = require '../views/suspiciousness-reason-view'
 {CompositeDisposable} = require 'atom'
 
 module.exports =
