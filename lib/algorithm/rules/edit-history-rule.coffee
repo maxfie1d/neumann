@@ -66,12 +66,11 @@ module.exports =
 
 			#開発期間の短いファイルに対しては時期に比例して配点する
 			if rangeDay <= 180
-				value = timeMilliSecond / range
-				console.log value
+				value =  (codeLine.timestamp.getTime() - minTime) / range
 				return value
 
 			#開発期間が1年以上のものに対しては時期に応じて以下の配点を行う。
-			#24時間以内であれば90点以上
+			#24時間以内であれば90点以  console.log value
 			if timeHour <= 24
 				value = (24 - timeHour) / 24 * 10 + 90
 
