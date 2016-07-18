@@ -14,21 +14,25 @@ module.exports =
 			@rules['midnight'] = {
 				rule: new MidnightRule(16, 3)
 				priority: 10
+				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isMidnightRuleEnabled'
 			}
 
 			@rules['unreliableMembers']  = {
 				rule: new UnreliableMembersRule()
 				priority: 10
+				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isUnreliableMembersRuleEnabled'
 			}
 
 			@rules['notCommitted'] = {
 				rule: new NotCommittedRule()
 				priority: 10
+				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isNotCommittedRuleEnabled'
 			}
 
 			@rules['editHistory'] = {
 				rule: new EditHistoryRule()
 				priority: 10
+				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isEditHistoryRuleEnabled'
 			}
 
 			# 評価対象を絞り込む場合はその初日をインスタンスvalidDateに入れてください
@@ -44,7 +48,8 @@ module.exports =
 
 			# それぞれのルールでのsuspiciousを計算
 			for key, rule of @rules
-				rule['rule'].evaluate(codeLines)
+				if rule.isEnabled
+					rule['rule'].evaluate(codeLines)
 
 			# (注) 一時的に各suspiciousが最大100であると仮定しているが、これは要修正
 			for line in codeLines
