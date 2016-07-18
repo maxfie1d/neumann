@@ -9,24 +9,27 @@ module.exports =
 	class NeumannAlgorithm extends AlgorithmBase
 		constructor: ->
 			# ノイマンアルゴリズムはこれらのルールによって危険度を評価します
-			@rules = [
-				{
-					rule: new MidnightRule(16, 3)
-					priority: 10
-				},
-				{
-					rule: new UnreliableMembersRule()
-					priority: 10
-				},
-				{
-					rule: new NotCommittedRule()
-					priority: 10
-				},
-				{
-					rule: new EditHistoryRule()
-					priority: 10
-				},
-			]
+			@rules = {}
+
+			@rules['midnight'] = {
+				rule: new MidnightRule(16, 3)
+				priority: 10
+			}
+
+			@rules['unreliableMembers']  = {
+				rule: new UnreliableMembersRule()
+				priority: 10
+			}
+
+			@rules['notCommitted'] = {
+				rule: new NotCommittedRule()
+				priority: 10
+			}
+
+			@rules['editHistory'] = {
+				rule: new EditHistoryRule()
+				priority: 10
+			}
 
 			# 評価対象を絞り込む場合はその初日をインスタンスvalidDateに入れてください
 			# 例) validDate = new Date("2016-07-01")
@@ -40,7 +43,7 @@ module.exports =
 				)
 
 			# それぞれのルールでのsuspiciousを計算
-			for rule in @rules
+			for key, rule of @rules
 				rule['rule'].evaluate(codeLines)
 
 			# (注) 一時的に各suspiciousが最大100であると仮定しているが、これは要修正
@@ -57,13 +60,13 @@ module.exports =
 				for evaluation in codeLine.evaluations
 					switch evaluation.rule
 						when Rules.Midnight
-							rule = @rules[0]['rule']
+							rule = @rules['midnight']['rule']
 						when Rules.Unreliable
-							rule = @rules[1]['rule']
+							rule = @rules['unreliableMembers']['rule']
 						when Rules.EditHistory
-							rule = @rules[3]['rule']
+							rule = @rules['editHistory']['rule']
 						when Rules.NotCommittedRule
-							rule = @rules[2]['rule']
+							rule = @rules['notCommitted']['rule']
 
 					reasons.push rule.evaluationReason(evaluation)
 
