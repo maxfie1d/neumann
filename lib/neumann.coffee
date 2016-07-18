@@ -11,23 +11,60 @@ module.exports = Neumann =
 		gitPath:
 			type: 'string'
 			default: 'git'
+			order: 2
 			description: 'git path'
 		# 使用するアルゴリズムの設定
 		algorithm:
 			type: 'string'
 			default: "Neumann Algorithm"
+			order: 1
 			description: "Select algorithm to use."
 			enum: [
 				"Neumann Algorithm",
 				"Random Algorithm"
 			]
-		# 信頼できないメンバーの設定
-		unreliableMembers:
-			type: 'array'
-			default: []
-			items:
-				type: 'string'
-			description: "Unrealible members (comma-separated string)"
+		# ノイマンアルゴリズムで使用するルールを選択
+		neumannAlgorithmSettings:
+			title: "Neumann Algorithm settings"
+			type: 'object'
+			collapsed: false
+			order: 99
+			description: "Select rules which used in Neumann Algorithm to evaluate codes."
+			properties:
+				isMidnightRuleEnabled:
+					title: "Midnight rule"
+					description: "Codes that were written at night is suspicious."
+					type: 'boolean'
+					order: 1
+					default: true
+				isUnreliableMembersRuleEnabled:
+					title: "Unreliable members rule"
+					description: "Codes that were written by unrealible member is suspicious."
+					type: 'boolean'
+					order: 2
+					default: true
+				# 信頼できないメンバーの設定
+				unreliableMembers:
+					title: "Unreliable members"
+					type: 'array'
+					default: []
+					items:
+						type: 'string'
+					order: 2
+					description: "Unrealible members (comma-separated string)"
+				isEditHistoryRuleEnabled:
+					title: "Edit history rule"
+					description: "Recent codes is more suspicious."
+					type: 'boolean'
+					order: 3
+					default: true
+				isNotCommittedRuleEnabled:
+					title: "Not committed rule"
+					description: "Notify if the code is not yet commited."
+					type: 'boolean'
+					order: 4
+					default: true
+
 
 	subscriptions: null
 

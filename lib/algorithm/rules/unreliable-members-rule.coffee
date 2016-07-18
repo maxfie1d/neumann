@@ -11,7 +11,7 @@ module.exports =
 		evaluate: (codeLines) ->
 			for codeLine in codeLines
 				# 信頼できないメンバーを取得
-				unreliableMembers = atom.config.get('neumann.unreliableMembers')
+				unreliableMembers = atom.config.get('neumann.neumannAlgorithmSettings.unreliableMembers')
 
 				# 信頼できないメンバーのコードなら危険とする
 				if (index = unreliableMembers.indexOf(codeLine.author)) >= 0
