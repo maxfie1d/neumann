@@ -1,7 +1,7 @@
 # neumann package
 [![apm](https://img.shields.io/apm/v/neumann.svg)](https://atom.io/packages/neumann)
-[![apm](https://img.shields.io/apm/dm/neumann.svg)](https://atom.io/packages/neumann)
-[![apm](https://img.shields.io/apm/l/neumann.svg)](https://atom.io/packages/neumann)
+[![downloads](https://img.shields.io/apm/dm/neumann.svg)](https://atom.io/packages/neumann)
+[![license](https://img.shields.io/apm/l/neumann.svg)](https://atom.io/packages/neumann)
 
 Neumann is package for [Atom](https://atom.io/) which help predict buggy codes using Git change history.
 
@@ -11,12 +11,12 @@ command: `neumann:suspicious-lines`
 
 The more red the codes get, the more buggy the codes are.
 
-![apm](https://github.com/MaxfieldWalker/neumann/wiki/gif/suspicious-lines.gif)
+![Suspicious lines](https://github.com/MaxfieldWalker/neumann/wiki/gif/suspicious-lines.gif)
 
 ### Show bar chart of suspiciousness
 command: `neumann:suspiciousness-graph`
 
-![apm](https://github.com/MaxfieldWalker/neumann/wiki/gif/suspiciousness-graph.gif)
+![Suspiciousness graph](https://github.com/MaxfieldWalker/neumann/wiki/gif/suspiciousness-graph.gif)
 
 ## How it works
 ### Neumann Algorithm
