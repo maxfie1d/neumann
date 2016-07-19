@@ -33,13 +33,13 @@ module.exports = Neumann =
 			properties:
 				isMidnightRuleEnabled:
 					title: "Midnight rule"
-					description: "Codes that were written at night is suspicious."
+					description: "Codes written at night are suspicious."
 					type: 'boolean'
 					order: 1
 					default: true
 				isUnreliableMembersRuleEnabled:
 					title: "Unreliable members rule"
-					description: "Codes that were written by unrealible member is suspicious."
+					description: "Codes written by unreliable members are suspicious."
 					type: 'boolean'
 					order: 2
 					default: true
@@ -51,10 +51,10 @@ module.exports = Neumann =
 					items:
 						type: 'string'
 					order: 2
-					description: "Unrealible members (comma-separated string)"
+					description: "Unreliable members (comma-separated string)"
 				isEditHistoryRuleEnabled:
 					title: "Edit history rule"
-					description: "Recent codes is more suspicious."
+					description: "Recently edited codes are more suspicious."
 					type: 'boolean'
 					order: 3
 					default: true
