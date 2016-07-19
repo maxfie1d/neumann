@@ -6,6 +6,7 @@ EvaluationReason = require '../evaluation-reason'
 module.exports =
 	# 夜に書かれたコードはやばいルールです
 	class MidnightRule extends RuleBase
+		@RuleNum = Rules.Midnight
 		constructor: (@start, @end) ->
 
 		evaluate: (codeLines) ->
@@ -18,6 +19,17 @@ module.exports =
 					# MidnightRuleで危険と判定されたことを記録します
 					values.push {
 						suspicious: 100
+						args:{
+							rule: @RuleNum
+						}
+					}
+				else
+					values.push {
+						suspicious: 0
+						args: {
+							rule: @RuleNum
+						}
+
 					}
 			return values
 

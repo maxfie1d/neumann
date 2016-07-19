@@ -6,7 +6,8 @@ EvaluationReason = require '../evaluation-reason'
 module.exports =
 	# 最近に書かれたコードはやばいルールです
 	class EditHistoryRule extends RuleBase
-		constructor: (@priority=1) ->
+		@RuleNum = Rules.EditHistory
+		constructor: () ->
 
 		evaluate: (codeLines) ->
 			values = []
@@ -32,9 +33,12 @@ module.exports =
 				else
 					percentage = 1.0
 
-				values.push{
+				values.push {
 					suspicious: 10*percentage
-					d: codeLine.timestamp
+					args: {
+						rule: @RuleNum
+						d: codeLine.timestamp
+					}
 				}
 
 			return values
@@ -97,4 +101,4 @@ module.exports =
 
 			console.log value
 
-			rerutn value / 100
+			return value / 100

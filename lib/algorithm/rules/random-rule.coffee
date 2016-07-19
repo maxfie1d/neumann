@@ -6,14 +6,20 @@ EvaluationReason = require '../evaluation-reason'
 
 module.exports =
 	class RandomRule extends RuleBase
+		@RuleNum = Rules.Random
 		constructor: ->
 
 		evaluate: (codeLines) ->
+			values = []
 			for codeLine in codeLines
-				codeLine.evaluations.push {
-						rule: Rules.Random
-						suspicious: RandomNumberGenerator.generate() # ランダムに危険度を与えます
+				values.push {
+					suspicious: RandomNumberGenerator.generate() # ランダムに危険度を与えます
+					args: {
+						rule: @RuleNum
 					}
+				}
+
+			return values
 
 		evaluationReason: (evaluation) ->
 			reason = "なんとなく危険なコードです"

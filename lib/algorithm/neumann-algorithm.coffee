@@ -49,12 +49,12 @@ module.exports =
 			# それぞれのルールでのsuspiciousを計算
 			for key, rule of @rules
 				if rule.isEnabled
-					rule['rule'].evaluate(codeLines)
-
-			# (注) 一時的に各suspiciousが最大100であると仮定しているが、これは要修正
-			for line in codeLines
-				for sus in line.evaluations
-					line.totalSuspicious += sus['suspicious']
+					vals = rule['rule'].evaluate(codeLines)
+					if codeLines.length != vals.length
+						throw new Error("illegal evaluate() in " + key + ". The method evaluate() should return as much elements as the codeLines.")
+					for line,i in codeLines
+						line.totalSuspicious += vals[i]['suspicious']*rule['priority']
+						line.evaluations.push(vals[i]['args'])
 
 			return codeLines
 
@@ -73,6 +73,6 @@ module.exports =
 						when Rules.NotCommittedRule
 							rule = @rules['notCommitted']['rule']
 
-					reasons.push rule.evaluationReason(evaluation)
+					reasons.push(rule.evaluationReason(evaluation))
 
 			return reasons

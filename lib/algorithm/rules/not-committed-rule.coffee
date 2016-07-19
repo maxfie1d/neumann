@@ -9,6 +9,7 @@ NOT_COMMITTED_YET = "Not Committed Yet"
 module.exports =
 	# 未コミットのコードはやばいルールです
 	class NotCommittedRule extends RuleBase
+		@RuleNum = Rules.NotCommittedRule
 		constructor: ->
 
 		evaluate: (codeLines) ->
@@ -18,6 +19,16 @@ module.exports =
 				if codeLine.author is NOT_COMMITTED_YET
 					values.push {
 						suspicious: 100
+						args: {
+							rule: @RuleNum
+						}
+					}
+				else
+					values.push {
+						suspicious: 0
+						args: {
+							rule: @RuleNum
+						}
 					}
 			return values
 
