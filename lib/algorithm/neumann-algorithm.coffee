@@ -39,6 +39,7 @@ module.exports =
 			# 例) validDate = new Date("2016-07-01")
 			@validDate = null
 
+
 		evaluate: (codeLines) =>
 			# 評価対象の絞り込み
 			if @validDate?
@@ -50,6 +51,7 @@ module.exports =
 			for key, rule of @rules
 				if rule.isEnabled
 					vals = rule['rule'].evaluate(codeLines)
+					suspiciousnesses = AlgorithmBase.regulateSuspiciousness(val['suspicious'] for val in vals)
 					if codeLines.length != vals.length
 						throw new Error("illegal evaluate() in " + key + ". The method evaluate() should return as much elements as the codeLines.")
 					for line,i in codeLines
