@@ -9,17 +9,23 @@ module.exports =
 		constructor: ->
 
 		evaluate: (codeLines) ->
+			values = []
 			for codeLine in codeLines
 				# 信頼できないメンバーを取得
 				unreliableMembers = atom.config.get('neumann.neumannAlgorithmSettings.unreliableMembers')
 
 				# 信頼できないメンバーのコードなら危険とする
 				if (index = unreliableMembers.indexOf(codeLine.author)) >= 0
-					codeLine.evaluations.push {
-						rule: Rules.Unreliable
+					values.push {
 						suspicious: 100
 						args: [unreliableMembers[index]]
 					}
+				else
+					values.push {
+						suspicious: 0
+						args: null
+					}
+				return values
 
 		evaluationReason: (evaluation) ->
 			reason = "#{evaluation.args[0]}によって書かれたコードです"

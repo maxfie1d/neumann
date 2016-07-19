@@ -12,13 +12,14 @@ module.exports =
 		constructor: ->
 
 		evaluate: (codeLines) ->
+			values = []
 			for codeLine in codeLines
 				# 未コミットならコードの著者がNot Committed Yetになる
 				if codeLine.author is NOT_COMMITTED_YET
-					codeLine.evaluations.push {
-						rule: Rules.NotCommittedRule
+					values.push {
 						suspicious: 100
 					}
+			return values
 
 		evaluationReason: (evaluation) ->
 			reason = "未コミットのコードです"

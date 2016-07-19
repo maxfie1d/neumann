@@ -9,7 +9,7 @@ module.exports =
 		constructor: (@priority=1) ->
 
 		evaluate: (codeLines) ->
-
+			values = []
 			# maxtime mintime を求める			@timestamp = new Date(collection[3])
 			maxTime = 0	#NewestTime　最大値	X2
 			todayTime = new Date
@@ -32,12 +32,12 @@ module.exports =
 				else
 					percentage = 1.0
 
-				codeLine.evaluations.push {
-					rule: Rules.EditHistory
-					suspicious: 10 * @priority * percentage
+				values.push{
+					suspicious: 10*percentage
 					d: codeLine.timestamp
 				}
 
+			return values
 
 		evaluationReason: (evaluation) ->
 			year  = evaluation.d.getFullYear()		 	#	年（西暦）

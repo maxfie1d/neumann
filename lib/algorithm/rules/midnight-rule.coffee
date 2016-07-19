@@ -9,16 +9,17 @@ module.exports =
 		constructor: (@start, @end) ->
 
 		evaluate: (codeLines) ->
+			values = []
 			for codeLine in codeLines
 				hours = codeLine.timestamp.getHours()
 				# (@start)時から(@end)時までに書かれたコードなら危険と判定する
 				if hours >= @start || hours <= @end
 
 					# MidnightRuleで危険と判定されたことを記録します
-					codeLine.evaluations.push {
-						rule: Rules.Midnight
+					values.push {
 						suspicious: 100
 					}
+			return values
 
 		evaluationReason: (evaluation) ->
 			reason = "#{@start}時から#{@end}時の間に書かれたコードです"
