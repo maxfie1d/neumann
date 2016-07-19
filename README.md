@@ -3,67 +3,107 @@
 [![apm](https://img.shields.io/apm/dm/neumann.svg)](https://atom.io/packages/neumann)
 [![apm](https://img.shields.io/apm/l/neumann.svg)](https://atom.io/packages/neumann)
 
-gitの履歴からバグの発見を支援するツール(になる予定)です。
+Neumann is package for [Atom](https://atom.io/) which help predict buggy codes using Git change history.
 
-# 開発ルール
+## Usage
+### Visualize buggy codes
+command: `neumann:suspicious-lines`
 
-## 議事録
-議事録はディレクトリdoc/meeting_minute内に保存してください。Markdown形式で保存していただけるとありがたいです。
+The more red the codes get, the more buggy the codes are.
 
-## 情報共有
-このプラグインに関する情報交換やバグの報告は全てissueで行ってください。
+![apm](https://github.com/MaxfieldWalker/neumann/wiki/gif/suspicious-lines.gif)
 
-## Pull Request
-コードを他人にレビューして欲しい時はPull Requestを作成してください。
+### Show bar chart of suspiciousness
+command: `neumann:suspiciousness-graph`
 
-## 文字コード
-文字コードは**UTF-8**で統一してください。
+![apm](https://github.com/MaxfieldWalker/neumann/wiki/gif/suspiciousness-graph.gif)
 
-## インデントについて
-インデントはスペースではなくタブ文字に統一します．
-Atomの場合，「Settings」の下の方に「Tab Type」という項目があるので，これを「hard」に設定してください．
-
-## ブランチ戦略
-作業に応じたブランチでcommitしてください。ブランチ戦略は[Driessen](http://nvie.com/posts/a-successful-git-branching-model/)(英語注意．日本語訳は[ここ](http://keijinsonyaban.blogspot.jp/2010/10/successful-git-branching-model.html))の方法で行おうと思います。
-
-ざっくりと説明すると、
+## How it works
+### Neumann Algorithm
+neumann uses algorithm called **Neumann Algorithm** to predict buggy codes.
+**Neumann Algorithm** evaluates codes following some awesome rules.
 <dl>
-	<dt>master</dt>
-	<dd>安定版のリリース</dd>
-	<dt>release</dt>
-	<dd>最新版のリリース。特定のバージョンを安定版にするときはmasterにmergeしてください。</dd>
-	<dt>hotfixes</dt>
-	<dd>重大なバグの修正。修正したあとはmasterとhotfixesにmergeしてください。</dd>
-	<dt>develop</dt>
-	<dd>開発用。機能が実装できて動作が確認できればreleaseにmergeしてください。</dd>
-	<dt>feaature</dt>
-	<dd>特定の機能開発をするごとに新たに作成するブランチです。機能の開発が終了したらdevelopに**rebase**(≠merge)してください。</dd>
+    <dt>Midnight rule</dt>
+        <dd>Codes written at night are suspicious.</dd>
+    <dt>Unreliable members rule</dt>
+        <dd>Codes written by unreliable members are suspicious.</dd>
+    <dt>Edit history rule</dt>
+        <dd>Recently editted codes are more suspicious.</dd>
+    <dt>Not committed rule</dt>
+        <dd>Notify if the code is not yet commited.</dd>
+</dl>
 
 
-## gitの基本的な使い方
-<dl>
-	<dt>編集したファイルを追加</dt>
-	<dd>git add (ファイル名)</dd>
-	<dt>コミット</dt>
-	<dd>git commit -m "(コミットメセージ)"</dd>
-	<dt>プッシュ</dt>
-	<dd>git push</dd>
-	<dt>ブランチの切り替え</dt>
-	<dd>git checkout (ブランチ名)</dd>
-	<dt>コミッター・タイムスタンプ表示</dt>
-	<dd>git blame (ファイル名)</dd>
+## Requirement
+### Supported platforms
+- Windows
+- Mac
+- Linux
 
-## Collaborators
-いきなりpushは怖いという人はここに自己紹介でも書いて練習しましょう！
+## Installation
+```
+$ apm install neumann
+```
 
-<dl>
-	<dt>[MaxfieldWalker](https://github.com/MaxfieldWalker)
-	<dd>Web周りの技術にも興味あります．CoffeeScriptは初心者です．好きなコーヒーはアイスコーヒーです．よろしくお願いします．
-	<dt>[MasayoshiIwamoto](https://github.com/MasayoshiIwamoto)
-	<dd>プログラミングは好きですが、プログラミングの勉強は嫌いです.頑張らない僕を叱って下さい.好きな言葉は「マヨネーズ」です.よろしくお願いします.
-	<dt>[igaigai](https://github.com/igaigai)
-	<dd>プログラミングは好きですが、勉強は嫌いです。好きな役は純チャンです。わからないことばかりですが、よろしくお願いします.
-	<dt>[tarohi24](https://github.com/tarohi24)
-	<dd>プログラミングは好きです。勉強も好きです。好きなvimはvimです。よろしくお願いします。
-	<dt>[Keigo01](https://github.com/Keigo01)
-	<dd>プログラミングは好きです。最近はデザイン関係も面白そうだなと思っています。よろしくお願いします。
+or
+
+1. Open Settings in [Atom](https://atom.io/) (Windows: `Ctrl`+`,` Mac: `⌘`+`,`)
+- Go to Install
+- Search for `neumann`
+- Install
+
+## Contribution
+1. Fork it
+- Create your feature branch (git checkout -b new-feature)
+- Make your changes
+- Commit your changes (git commit -am 'Add some awesome feature')
+- Push to the branch (git push origin new-feature)
+- Create new Pull Request
+
+## Licence
+MIT
+
+## His name is Neumann
+```
+#HHHH@@@@@gmqkkbppfffVyyyyZZZZuvvrrrtttOtrrvvzzzXuZZZyyyVfVfpppbbbbppfpffpffffff
+#H#HHHHH@@@gmqkbppffffVyyyyZXuZwOwmQQmgmHMMMNNHkwZXXZZyyyVVfppppppppfpppffpffVff
+HHHHHHHHHH@@gmkbpppffVVyyyZUzzI+j+XHHMMMMHHHHHUIwWMHHkkkyyVVffpfVyVVfppfpfffffff
+HH######HHH@@gqkbppffVyXZXWX&uAwXHHHHHSVVTC1<?<<OWHHHMMMNkyVVfffVVyfppppffppfffp
+##NNNN#N##HH@@mqbppffXCdWHW0zz?OOdXXWkO1<<___` `_1XWH@MMMNNkyVVVVVffffpppppfpppf
+NNNNNNNNN#HH@@gqHpp06jdHS<<:(<<+zOOwOOI<__  ````` _?XHHHMMMMNWVyyVfffppfpfppffff
+NNNNNNNNN##HH@gHkW6+dWHC~(+1zzzlzO<<<<~<_ ` `    `` ?XHMMMMMNNkyyyVVVffppffpffff
+NNNNNNNN#N##HHHWY1dWM@<(+<1<zOOz<~<_.    ``    ` ` ``_vHgqMNMMMkyZyyyVffpffffffV
+NNNNNNN#NN##HMHP.OWM#> _<+;<<<<<~~_  ```   ` `    ` `` ?MHMMHM##NZZyyyVVVfffffVV
+NNNNNNNN###HHMM{ (MM$  -+?<:~._.` `````  `           ```zWMMMHM#MHkZZyyyVVyVVyVy
+NN#NNN####H#HHH-. WM!  (=<<~..````````` ` `      `   ``` zXHMHMMNNMXuZZZZyyyyyyy
+NNNN#######HMN8<-(}   .;=<:_..``````   `   `  `   `   ```(UMHMHMNMKzzuuuZuZZZZZZ
+N#######HHHHHB<_.d{ ` (<=>:_.````  ` `  ` `  `     `  ``` dMMM##NNKrrrvzuuuuZZZZ
+NN####HHHHHH@P<(?!`   <(=?<__`````` ```` ````  ` ``` ```` (HMMMNNN#OlttrrzzuuZZZ
+N###HMH@@H@@Hb<Jk-  ` +zO1<___- `````````````````````````.(WWMNNNM6llltttrrvzuuu
+##HHHH@@@@@@@D0$<_  ` jvOz?>;~~_.   ``````````````````` ._(WHM#NN#===lllttttrrzu
+##HHH@@@@@ggHky_-.` `.wuwl?<:~_......```````````````. ._~__dMMMNN@=<<1llllttttrr
+HHH@@@@gggmqqY?c(!   (zOrO?><_..````...``````````` ..~~_._~(HMMNM0!.J,1llllltttt
+H@@@@gggmmqkW+k><  ``_ (wwz+<<___--__~_--__----((J++--._..~~dMM#CuvTB><llllttttt
+@@@ggmmqkkbpWIXz_    .QHMMMMHHma&<_~:~~(jggMH@MHHHMBWWZ<__~~jMM@v1<~<_+llltttttt
+@gmqkkbbppfWZXzZ<. ..JTXXA&+++zZUWO+<(+wWM6aQQQQHkQgzOZz<__~jMM4MNk~>(==lltttttt
+mqqkbppfVyZZuuI1+- (XmuMMMMMM#7WWXI<~``jHKWU<HNN@?YTTI<~_._::1>(WMD(<?===llttttr
+qkbbpfVyZZuuzvr<w_ _dWH$(OzTY<<1<<Zz_``(TI_(<_<<_-__._` `._::+z(7><!<??==llltrrr
+bbppfVyZZuuvrrt>j:  ?wOO+=z<<<<<+ztv_  `.___~~___```   ``._(<zI_._`.>??===llttrr
+ppfVVyZuuzvrttl>.~` .<rlOz<___:<+zt>_  ````   `````` ` ` __;+OO__` (>>?==lltttrr
+pfVyZZuuzrttll=>`  `_(vOz<:_(::+ltI< ``...```  ```````.._(<+zrZXo+<;>??=lllttrrr
+fVyZZuzvrttll=??<<` ;<zZOz<::::<zC ~``  ~.(-.  ` ```..~_(+zwzu>~::;;>?==lltrrrrv
+VyyZuzvrttll==?>;< `(z_<=1<:~:(+v __``` .  js+- ``...._<>1wuuX<~::;>>?=ltttrvvzz
+VyyZuzvrttll=??<<~   __ +?<:(+zI1Jz----(jgsdBOz<__.___(;+zruX$_::;;>?=lltrrzzzuu
+VyZuuzrrttllz<!    `` ~ +?;;+z>:(+OXWQHMB=_  ?OOz<_~~(;<1zwX0<:::;>?==ltrrzuuuZZ
+yZuuzvvrtv?! .(:.Jx ` . +=>?=<(++===1v1<~._..__?wOz<::<+ztwXs--:;>??=ltrvzuZZZyy
+yuuzzvZ>` .(ggP.d@H-`  .+=??zzlllz<<<~~!_` _~<++jOz=>;>zOwXVyWWykAzzttrzuuZZyVVf
+ZuXZ>` .jHMNNMljMMMH-  _+l<<1dUUXQme+-.(&ggmmkMHkO<>>?=zwXffyWVpppkHkXuuuZyyVfpp
+7!  ..dMNNNNNMkMMgqHkl (1zz;+=;<lOOZvTTT7<<<;__?XIz+1zwwXkwVfWWWpkWqHWfVyXyVfpbk
+ .(+d#NNNNNNNMHHH@Hmqko.zwwzz=++=lOwwA&&ee&zz++<vXwwwwXf(HXWWHHHHWmHHqHpWfWUUWWH
+.dMNNNNNNNNNNMMMH@HHWHWkAwWkXOzzz+11++777<?<<<<<>zwWWHD`(HkWHWWHWHHmmqHHpW0vvvvZ
+gMNNNNNNNNMM#MMHHHHkkHHHWpWHHkkwwz++<_ `  `   _(+dHMM3  dNKXWkHkkkHmH@gHWXXzvtOz
+NNNNNNMMMMM#MMMMHH@HHHmHWHHM#TMNXXwOz++++--(((+dW@M9'  .NNNWfWWbmHWWHgqHXuzzrzwr
+NNNNNNMMHHHM@H@HHMHMgHgHgHHHMm ?4HHkkQQkkQQQQkHMM9^`  .MNNNWHHWHqbpWUWMkZXwXXOOz
+NNNN##M####MHHHMHgHHgmgHHHHHMMp  `?7WM##NN##NNMY!`   `(#NNMHHmgHWyZXXZWHkzXbkwOz
+##NNNNMM#NM@@@MgHH@gmqHMMgMHM#Mp`     ?MNNNNMMN,     `(NNMMfHHHpWUZXWXWHZZXWkuuw
+```
