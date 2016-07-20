@@ -3,7 +3,7 @@
 [![downloads](https://img.shields.io/apm/dm/neumann.svg)](https://atom.io/packages/neumann)
 [![license](https://img.shields.io/apm/l/neumann.svg)](https://atom.io/packages/neumann)
 
-Neumann is package for [Atom](https://atom.io/) which help predict buggy codes using Git change history.
+neumann is package for [Atom](https://atom.io/) which help predict buggy codes using Git change history.
 
 ## Usage
 ### Visualize buggy codes
@@ -61,7 +61,7 @@ or
 - Create new Pull Request
 
 ## Licence
-MIT
+[MIT](LICENSE.md)
 
 ## His name is Neumann
 ```
