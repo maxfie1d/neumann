@@ -64,6 +64,7 @@ module.exports =
 		evaluationReason: (codeLine) ->
 			reasons = []
 			if codeLine?
+				console.log(codeLine)
 				for evaluation in codeLine.evaluations
 					switch evaluation.rule
 						when Rules.Midnight
@@ -74,6 +75,7 @@ module.exports =
 							rule = @rules['editHistory']['rule']
 						when Rules.NotCommittedRule
 							rule = @rules['notCommitted']['rule']
-					reasons.push(rule.evaluationReason(evaluation))
+					if rule?
+						reasons.push(rule.evaluationReason(evaluation))
 
 			return reasons

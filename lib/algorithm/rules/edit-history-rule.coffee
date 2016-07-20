@@ -6,8 +6,8 @@ EvaluationReason = require '../evaluation-reason'
 module.exports =
 	# 最近に書かれたコードはやばいルールです
 	class EditHistoryRule extends RuleBase
-		@RuleNum = Rules.EditHistory
 		constructor: () ->
+			@RuleNum = Rules.EditHistory
 
 		evaluate: (codeLines) ->
 			values = []

@@ -6,8 +6,8 @@ EvaluationReason = require '../evaluation-reason'
 
 module.exports =
 	class RandomRule extends RuleBase
-		@RuleNum = Rules.Random
 		constructor: ->
+			@RuleNum = Rules.Random
 
 		evaluate: (codeLines) ->
 			values = []

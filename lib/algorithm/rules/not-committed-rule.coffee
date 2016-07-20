@@ -9,8 +9,8 @@ NOT_COMMITTED_YET = "Not Committed Yet"
 module.exports =
 	# 未コミットのコードはやばいルールです
 	class NotCommittedRule extends RuleBase
-		@RuleNum = Rules.NotCommittedRule
 		constructor: ->
+			@RuleNum = Rules.NotCommittedRule
 
 		evaluate: (codeLines) ->
 			values = []

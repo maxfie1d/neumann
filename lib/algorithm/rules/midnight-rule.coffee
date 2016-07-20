@@ -6,8 +6,8 @@ EvaluationReason = require '../evaluation-reason'
 module.exports =
 	# 夜に書かれたコードはやばいルールです
 	class MidnightRule extends RuleBase
-		@RuleNum = Rules.Midnight
 		constructor: (@start, @end) ->
+			@RuleNum = Rules.Midnight
 
 		evaluate: (codeLines) ->
 			values = []

@@ -6,8 +6,8 @@ EvaluationReason = require '../evaluation-reason'
 module.exports =
 	# このメンバーはやばいルール
 	class UnreliableMembersRule extends RuleBase
-		@RuleNum = Rules.Unreliable
 		constructor: ->
+			@RuleNum = Rules.Unreliable
 
 		evaluate: (codeLines) ->
 			values = []
@@ -29,6 +29,7 @@ module.exports =
 						suspicious: 0
 						args: {
 							rule: @RuleNum
+							args: ""
 						}
 					}
 			return values
