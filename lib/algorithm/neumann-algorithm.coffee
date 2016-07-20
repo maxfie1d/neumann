@@ -56,7 +56,7 @@ module.exports =
 						throw new Error("illegal evaluate() in " + key + ". The method evaluate() should return as much elements as the codeLines.")
 					for line,i in codeLines
 						line.totalSuspicious += suspiciousnesses[i]*rule['priority']
-						line.evaluations.push(vals[i]['args'])
+						line.evaluations.push(vals[i])
 
 			return codeLines
 

@@ -14,9 +14,7 @@ module.exports =
 			for codeLine in codeLines
 				values.push {
 					suspicious: RandomNumberGenerator.generate() # ランダムに危険度を与えます
-					args: {
-						rule: @RuleNum
-					}
+					rule: @RuleNum
 				}
 
 			return values

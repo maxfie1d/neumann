@@ -19,16 +19,12 @@ module.exports =
 				if codeLine.author is NOT_COMMITTED_YET
 					values.push {
 						suspicious: 100
-						args: {
-							rule: @RuleNum
-						}
+						rule: @RuleNum
 					}
 				else
 					values.push {
 						suspicious: 0
-						args: {
-							rule: @RuleNum
-						}
+						rule: @RuleNum
 					}
 			return values
 

@@ -35,10 +35,8 @@ module.exports =
 
 				values.push {
 					suspicious: 10*percentage
-					args: {
-						rule: @RuleNum
-						d: codeLine.timestamp
-					}
+					rule: @RuleNum
+					d: codeLine.timestamp
 				}
 
 			return values

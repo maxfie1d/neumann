@@ -19,17 +19,12 @@ module.exports =
 					# MidnightRuleで危険と判定されたことを記録します
 					values.push {
 						suspicious: 100
-						args:{
-							rule: @RuleNum
-						}
+						rule: @RuleNum
 					}
 				else
 					values.push {
 						suspicious: 0
-						args: {
-							rule: @RuleNum
-						}
-
+						rule: @RuleNum
 					}
 			return values
 

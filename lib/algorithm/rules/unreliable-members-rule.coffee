@@ -19,18 +19,14 @@ module.exports =
 				if (index = unreliableMembers.indexOf(codeLine.author)) >= 0
 					values.push {
 						suspicious: 100
-						args: {
-							rule: @RuleNum
-							args: [unreliableMembers[index]]
-						}
+						rule: @RuleNum
+						args: [unreliableMembers[index]]
 					}
 				else
 					values.push {
 						suspicious: 0
-						args: {
-							rule: @RuleNum
-							args: ""
-						}
+						rule: @RuleNum
+						args: ""
 					}
 			return values
 
