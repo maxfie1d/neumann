@@ -3,6 +3,7 @@ git = require '../git'
 SuspiciousLinesView = require '../views/suspicious-lines-view'
 CodeLine = require '../models/code-line'
 App = require '../app'
+FileHelper = require '../helpers/file-helper'
 
 module.exports =
 	class SuspiciousLinesModel
@@ -17,17 +18,8 @@ module.exports =
 			@view = new SuspiciousLinesView(@editor)
 
 		invoke: =>
-			git.blame()
-			.then (output) =>
-				array = output.split('\n')[...-1]
-				codeLines = []
-				for item in array
-					codeLine = new CodeLine(item)
-					codeLines.push(codeLine)
-
-				# アルゴリズムにコードを渡して疑わしさを評価してもらう
-				codeLines = App.instance().algorithm.evaluate(codeLines)
-
+			FileHelper.getEvaluatedCodeLines(@editor.getPath())
+			.then (codeLines) =>
 				# 前のデコレーションとハンドラーを削除
 				@destroy()
 
