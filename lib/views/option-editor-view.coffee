@@ -1,11 +1,12 @@
 {ScrollView} = require "atom-space-pen-views"
 git = require '../git'
 CodeLine = require '../models/code-line'
+$ = require 'jquery'
 
 module.exports =
 	class OptionEdtiorView extends ScrollView
 		@content: ->
-			@div class: 'option-editor', =>
+			@div class: 'option-editor', outlet: 'container', =>
 				@h1 'Option Editor'
 
 				# 危険な時間指定
@@ -14,21 +15,6 @@ module.exports =
 					@input type: "time", step: "3600", id: 'startTime'
 					@text("~")
 					@input type: "time", step: "3600", id: 'endTime'
-
-			#それぞれの人の危険度指定
-#		 for i in x.author
-				git.blame()
-				.then (output) ->
-					array = output.split('\n')[...-1]
-					codeLines = []
-					for item in array
-						codeLine = new CodeLine(item)
-						codeLines.push(codeLine)
-
-						x.ahthor for x in codeLines
-						@form =>
-							@label x.author
-							@input type: "range", min: "0", max: "100"
 
 				@h3 'priority'
 
@@ -46,7 +32,7 @@ module.exports =
 									@label "Member:"
 							@tr =>
 								@td =>
-									@input type: "range", min: "0", max: "100", id: 'membrPriority'
+									@input type: "range", min: "0", max: "100", id: 'memberPriority', outlet: "memberPriority"
 						@form id: 'nummod', =>
 							@tr =>
 								@td =>
@@ -56,7 +42,7 @@ module.exports =
 									@input type: "range", min: "0", max: "100", id: 'NummodPriority'
 
 				@form =>
-					@input type: "button", value: "Application", id: 'appButton', click: 'hoge', "foo"
+					@input type: "button", value: "Application", id: 'appButton', click: 'hoge'
 
-		hoge: (hage) ->
-			console.log "#{hage}"
+				hoge: ->
+					console.log @container.find('#memberPriority')
