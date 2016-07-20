@@ -10,8 +10,8 @@
 			'label': 'neumann'
 			'submenu': [
 				{
-					'label': 'git blame'
-					'command': 'neumann:git-blame'
+					'label': 'Visualize buggy codes'
+					'command': 'neumann:suspicious-lines'
 				},
 				{
 					'label': 'Show suspiciousness graph'
