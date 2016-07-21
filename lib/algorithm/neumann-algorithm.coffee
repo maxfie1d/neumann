@@ -11,25 +11,25 @@ module.exports =
 			# ノイマンアルゴリズムはこれらのルールによって危険度を評価します
 			@rules = {}
 
-			@rules['midnight'] = {
+			@rules.midnight = {
 				rule: new MidnightRule(22, 3)
 				priority: 10
 				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isMidnightRuleEnabled'
 			}
 
-			@rules['unreliableMembers']  = {
+			@rules.unreliableMembers  = {
 				rule: new UnreliableMembersRule()
 				priority: 10
 				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isUnreliableMembersRuleEnabled'
 			}
 
-			@rules['notCommitted'] = {
+			@rules.notCommitted = {
 				rule: new NotCommittedRule()
 				priority: 10
 				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isNotCommittedRuleEnabled'
 			}
 
-			@rules['editHistory'] = {
+			@rules.editHistory = {
 				rule: new EditHistoryRule()
 				priority: 10
 				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isEditHistoryRuleEnabled'
@@ -50,12 +50,12 @@ module.exports =
 			# それぞれのルールでのsuspiciousを計算
 			for key, rule of @rules
 				if rule.isEnabled
-					vals = rule['rule'].evaluate(codeLines)
-					suspiciousnesses = AlgorithmBase.regulateSuspiciousness(val['suspicious'] for val in vals)
+					vals = rule.rule.evaluate(codeLines)
+					suspiciousnesses = AlgorithmBase.regulateSuspiciousness(val.suspicious for val in vals)
 					if codeLines.length != vals.length
 						throw new Error("illegal evaluate() in " + key + ". The method evaluate() should return as much elements as the codeLines.")
 					for line,i in codeLines
-						line.totalSuspicious += suspiciousnesses[i]*rule['priority']
+						line.totalSuspicious += suspiciousnesses[i]*rule.priority
 						line.evaluations.push(vals[i])
 
 			return codeLines
@@ -64,28 +64,28 @@ module.exports =
 		evaluationReason: (codeLine) ->
 			reasons = []
 			if codeLine?
-				codeLine.evaluations = (x for x in codeLine.evaluations when x['suspicious'] != 0)
+				codeLine.evaluations = (x for x in codeLine.evaluations when x.suspicious != 0)
 				for evaluation in codeLine.evaluations
 					switch evaluation.rule
 						when Rules.Midnight
-							rule = @rules['midnight']['rule']
+							rule = @rules.midnight.rule
 						when Rules.Unreliable
-							rule = @rules['unreliableMembers']['rule']
+							rule = @rules.unreliableMembers.rule
 						when Rules.EditHistory
-							rule = @rules['editHistory']['rule']
+							rule = @rules.editHistory.rule
 						when Rules.NotCommittedRule
-							rule = @rules['notCommitted']['rule']
+							rule = @rules.notCommitted.rule
 					if rule?
 						reasons.push(rule.evaluationReason(evaluation))
 
 			return reasons
 
 		changePriority: (time,member,num) ->
-			@rules['unreliableMembers']['priority'] = member
-			@rules['midnight']['priority'] = time
-			@rules['editHistory']['priority'] = num
+			@rules.unreliableMembers.priority = member
+			@rules.midnight.priority = time
+			@rules.editHistory.priority = num
 
 		changeTime: (start,end) ->
-			midnightRule = @rules['midnight']['rule']
+			midnightRule = @rules.midnight.rule
 			midnightRule.start = start
 			midnightRule.end = end
