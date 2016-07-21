@@ -82,7 +82,7 @@ module.exports = Neumann =
 		optionEditorModel = new OptionEditorModel
 		@subscriptions.add atom.commands.add 'atom-workspace', 'neumann:option-editor': -> optionEditorModel.toggle()
 
-		# 各TextEditorに対してSuspiciousLineViewを作る
+		# 各TextEditorに対してModelを作る
 		atom.workspace.observeTextEditors (editor) ->
 			model = new SuspiciousLinesModel(editor)
 			new SuspiciousnessReasonModel(model)
