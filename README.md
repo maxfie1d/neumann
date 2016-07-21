@@ -3,7 +3,7 @@
 [![downloads](https://img.shields.io/apm/dm/neumann.svg)](https://atom.io/packages/neumann)
 [![license](https://img.shields.io/apm/l/neumann.svg)](https://atom.io/packages/neumann)
 
-neumann is package for [Atom](https://atom.io/) which help predict buggy codes using Git change history.
+neumann is a package for [Atom](https://atom.io/) which predicts buggy codes using its Git change history.
 
 ## Usage
 ### Visualize buggy codes
@@ -21,7 +21,7 @@ command: `neumann:suspiciousness-graph`
 ## How it works
 ### Neumann Algorithm
 neumann uses algorithm called **Neumann Algorithm** to predict buggy codes.
-**Neumann Algorithm** evaluates codes following some awesome rules.
+**Neumann Algorithm** evaluates codes by following some awesome rules.
 <dl>
     <dt>Midnight rule</dt>
         <dd>Codes written at night are suspicious.</dd>
@@ -58,7 +58,7 @@ or
 - Make your changes
 - Commit your changes (`git commit -am 'Add some awesome feature'`)
 - Push to the branch (`git push origin new-feature`)
-- Create new Pull Request
+- Create a new Pull Request
 
 ## Licence
 [MIT](LICENSE.md)
