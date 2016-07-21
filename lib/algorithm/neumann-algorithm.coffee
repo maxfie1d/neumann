@@ -12,7 +12,7 @@ module.exports =
 			@rules = {}
 
 			@rules['midnight'] = {
-				rule: new MidnightRule(16, 3)
+				rule: new MidnightRule(22, 3)
 				priority: 10
 				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isMidnightRuleEnabled'
 			}

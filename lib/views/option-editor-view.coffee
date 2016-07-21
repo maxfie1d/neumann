@@ -14,7 +14,7 @@ module.exports =
 					# 危険な時間指定
 					@form id: 'SetTime', =>
 						@label "Time:"
-						@input type: "time", step: "3600", id: 'startTime', outlet: "startTime", value: "16:00"
+						@input type: "time", step: "3600", id: 'startTime', outlet: "startTime", value: "22:00"
 						@text("~")
 						@input type: "time", step: "3600", id: 'endTime', outlet: "endTime", value: "03:00"
 
