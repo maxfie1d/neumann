@@ -9,3 +9,6 @@
 # https://atom.io/docs/latest/behind-atom-keymaps-in-depth
 
 # このファイルではパッケージで使えるショートカットキーを定義します
+'atom-workspace':
+  'ctrl-g ctrl-b': 'neumann:option-editor'
+  'ctrl-a ctrl-x': 'neumann:suspiciousness-graph'
