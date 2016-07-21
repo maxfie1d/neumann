@@ -45,17 +45,17 @@ module.exports =
 
 		initialize: ->
 			# イベントの購読はここに書きます
-			@timePriority.on 'input', => @hoge()
-			@nummodPriority.on 'input', => @hoge()
-			@memberPriority.on 'input', => @hoge()
-			@startTime.on 'input', => @hoge2()
-			@endTime.on 'input', => @hoge2()
+			@timePriority.on 'input', => @updatePriority()
+			@nummodPriority.on 'input', => @updatePriority()
+			@memberPriority.on 'input', => @updatePriority()
+			@startTime.on 'input', => @updateTime()
+			@endTime.on 'input', => @updateTime()
 
 
-		hoge: ->
+		updatePriority: ->
 			console.log "time:#{@timePriority.val()} num:#{@nummodPriority.val()} member: #{@memberPriority.val()}"
 			App.instance().algorithm.changePriority(parseInt(@timePriority.val(),10),parseInt(@memberPriority.val(),10),parseInt(@nummodPriority.val(),10))
 
-		hoge2: ->
+		updateTime: ->
 			console.log "Time : #{@startTime.val()} ~ #{@endTime.val()}"
 			App.instance().algorithm.changeTime(parseInt(@startTime.val(),10),parseInt(@endTime.val(),10))
