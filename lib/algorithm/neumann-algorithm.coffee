@@ -86,4 +86,6 @@ module.exports =
 			@rules['editHistory']['priority'] = num
 
 		changeTime: (start,end) ->
-			@rules['midnight']['rule'] = new MidnightRule(start, end)
+			midnightRule = @rules['midnight']['rule']
+			midnightRule.start = start
+			midnightRule.end = end
