@@ -14,8 +14,7 @@ module.exports =
 			for codeLine in codeLines
 				hours = codeLine.timestamp.getHours()
 				# (@start)時から(@end)時までに書かれたコードなら危険と判定する
-				if hours >= @start || hours <= @end
-
+				if @inRange hours
 					# MidnightRuleで危険と判定されたことを記録します
 					values.push {
 						suspicious: 100
@@ -31,3 +30,9 @@ module.exports =
 		evaluationReason: (evaluation) ->
 			reason = "#{@start}時から#{@end}時の間に書かれたコードです"
 			return new EvaluationReason(Levels.warning, reason)
+
+		inRange: (hours) ->
+			if @start <= @end
+				return @start <= hours and hours <= @end
+			else
+				return @start <= hours or hours <= @end
