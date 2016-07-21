@@ -9,3 +9,4 @@
 # https://atom.io/docs/latest/behind-atom-keymaps-in-depth
 'atom-workspace':
   'ctrl-g ctrl-b': 'neumann:option-editor'
+  'ctrl-a ctrl-x': 'neumann:suspicious-graph'
