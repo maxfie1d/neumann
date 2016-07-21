@@ -2,6 +2,7 @@
 [![apm](https://img.shields.io/apm/v/neumann.svg)](https://atom.io/packages/neumann)
 [![downloads](https://img.shields.io/apm/dm/neumann.svg)](https://atom.io/packages/neumann)
 [![license](https://img.shields.io/apm/l/neumann.svg)](https://atom.io/packages/neumann)
+[English](README.md) 日本語
 
 neumannはGitの変更履歴からバグの危険のあるコードの発見を支援する[Atom](https://atom.io/)のパッケージです．
 

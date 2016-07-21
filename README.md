@@ -2,6 +2,7 @@
 [![apm](https://img.shields.io/apm/v/neumann.svg)](https://atom.io/packages/neumann)
 [![downloads](https://img.shields.io/apm/dm/neumann.svg)](https://atom.io/packages/neumann)
 [![license](https://img.shields.io/apm/l/neumann.svg)](https://atom.io/packages/neumann)
+English [日本語](README.ja.md)
 
 neumann is a package for [Atom](https://atom.io/) which predicts buggy codes using its Git change history.
 
