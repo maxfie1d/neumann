@@ -54,10 +54,10 @@ or
 
 ## Contribution
 1. Fork it
-- Create your feature branch (git checkout -b new-feature)
+- Create your feature branch (`git checkout -b new-feature`)
 - Make your changes
-- Commit your changes (git commit -am 'Add some awesome feature')
-- Push to the branch (git push origin new-feature)
+- Commit your changes (`git commit -am 'Add some awesome feature'`)
+- Push to the branch (`git push origin new-feature`)
 - Create new Pull Request
 
 ## Licence
