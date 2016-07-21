@@ -7,7 +7,6 @@ module.exports =
 
 		# Regulate susArray's each value into the range [0,100]
 		@regulateSuspiciousness: (susArray) ->
-			console.log(susArray)
 			min = Math.min.apply(null, susArray)
 			susArray = (i - min for i in susArray)
 			max = Math.max.apply(null, susArray)
