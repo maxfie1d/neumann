@@ -81,9 +81,9 @@ module.exports =
 			return reasons
 
 		changePriority: (time,member,num) ->
-			@rules[1]['priority'] = member
-			@rules[0]['priority'] = time
-			@rules[3]['priority'] = num
+			@rules['unreliableMembers']['priority'] = member
+			@rules['midnight']['priority'] = time
+			@rules['editHistory']['priority'] = num
 
 		changeTime: (start,end) ->
-			@rules[0]['rule'] = new MidnightRule(start, end)
+			@rules['midnight']['rule'] = new MidnightRule(start, end)
