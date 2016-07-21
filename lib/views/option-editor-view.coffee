@@ -53,9 +53,7 @@ module.exports =
 
 
 		updatePriority: ->
-			console.log "time:#{@timePriority.val()} num:#{@nummodPriority.val()} member: #{@memberPriority.val()}"
 			App.instance().algorithm.changePriority(parseInt(@timePriority.val(),10),parseInt(@memberPriority.val(),10),parseInt(@nummodPriority.val(),10))
 
 		updateTime: ->
-			console.log "Time : #{@startTime.val()} ~ #{@endTime.val()}"
 			App.instance().algorithm.changeTime(parseInt(@startTime.val(),10),parseInt(@endTime.val(),10))
