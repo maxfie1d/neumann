@@ -21,3 +21,6 @@ module.exports =
 		# コードの評価の理由を返します
 		evaluationReason: (codeLine) ->
 			throw new Error("NotImplementedException")
+
+		outputScoresAsJson: (codeLines) ->
+			return JSON.stringify(evaluate(codeLines))
