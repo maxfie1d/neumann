@@ -12,20 +12,20 @@ module.exports =
 			@rules = {}
 
 			@rules.midnight = {
-				rule: new MidnightRule(22, 3)
-				priority: 10
+				rule: new MidnightRule(2, 5)
+				priority: 0
 				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isMidnightRuleEnabled'
 			}
 
 			@rules.unreliableMembers  = {
 				rule: new UnreliableMembersRule()
-				priority: 10
+				priority: 20
 				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isUnreliableMembersRuleEnabled'
 			}
 
 			@rules.notCommitted = {
 				rule: new NotCommittedRule()
-				priority: 10
+				priority: 30
 				isEnabled: atom.config.get 'neumann.neumannAlgorithmSettings.isNotCommittedRuleEnabled'
 			}
 
